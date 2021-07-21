@@ -47,13 +47,6 @@ const CalorieForm = () => {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // const {
-    //   age,
-    //   sex,
-    //   activityLevel,
-    //   height: { heightValue, metrics: heightMetrics },
-    //   weight: { weightValue, metrics: weightMetrics },
-    // } = values;
 
     // if(sex==='male'){
 

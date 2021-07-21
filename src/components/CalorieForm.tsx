@@ -3,32 +3,36 @@ import React, { useState } from "react";
 const CalorieForm = () => {
   type FormState = {
     height: {
-      cmValue: number | string;
-      footValue: number | string;
-      inchValue: number | string;
+      cmValue: number;
+      footValue: number;
+      inchValue: number;
       metrics: string;
     };
     weight: {
-      weightValue: number | string;
+      kgValue: number;
+      stoneValue: number;
+      lbsValue: number;
       metrics: string;
     };
-    age: number | string;
+    age: number;
     sex: string;
     activityLevel: number;
   };
 
   const [values, setValues] = useState<FormState>({
     height: {
-      cmValue: "",
-      footValue: "",
-      inchValue: "",
+      cmValue: 0,
+      footValue: 0,
+      inchValue: 0,
       metrics: "feetAndInches",
     },
     weight: {
-      weightValue: "",
+      kgValue: 0,
+      stoneValue: 0,
+      lbsValue: 0,
       metrics: "stoneAndPounds",
     },
-    age: "",
+    age: 0,
     sex: "male",
     activityLevel: 1.55,
   });
@@ -38,21 +42,51 @@ const CalorieForm = () => {
     sex,
     activityLevel,
     height: { cmValue, footValue, inchValue, metrics: heightMetrics },
-    weight: { weightValue, metrics: weightMetrics },
+    weight: { kgValue, stoneValue, lbsValue, metrics: weightMetrics },
   } = values;
 
   console.log(values);
 
-  const convertToKg = () => {};
+  const convertToCm = (feet: number, inches: number) => {
+    const convertedToCm: number = feet * 30.48 + inches * 2.54;
+    return convertedToCm;
+  };
+
+  const convertToKg = (stone: number, lbs: number) => {
+    const convertedToKg: number = stone * 6.35029 + lbs * 0.45359237;
+    return convertedToKg;
+  };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // if(sex==='male'){
+    let heightVal: number;
+    let weightVal: number;
+    let result: number;
 
-    // }
-    //test
-    console.log(values);
+    if (heightMetrics === "feetAndInches") {
+      heightVal = convertToCm(footValue, inchValue);
+    } else {
+      heightVal = cmValue;
+    }
+
+    if (weightMetrics === "stoneAndPounds") {
+      weightVal = convertToKg(stoneValue, lbsValue);
+    } else {
+      weightVal = kgValue;
+    }
+
+    if (sex === "male") {
+      result = 10 * weightVal + 6.25 * heightVal - 5 * age + 5;
+      console.log(result);
+      console.log(weightVal);
+      console.log(heightVal);
+    } else {
+      result = 10 * weightVal + 6.25 * heightVal - 5 * age - 161;
+      console.log(result);
+      console.log(weightVal);
+      console.log(heightVal);
+    }
   };
 
   return (
@@ -126,16 +160,47 @@ const CalorieForm = () => {
       <div>
         <label htmlFor="weight">Weight</label>
 
-        <input
-          onChange={(e) =>
-            setValues((prev) => ({
-              ...prev,
-              weight: { ...prev.weight, weightValue: Number(e.target.value) },
-            }))
-          }
-          type="number"
-          id="weight"
-        />
+        {weightMetrics === "kg" ? (
+          <input
+            onChange={(e) =>
+              setValues((prev) => ({
+                ...prev,
+                weight: { ...prev.weight, kgValue: Number(e.target.value) },
+              }))
+            }
+            type="number"
+            id="weight"
+          />
+        ) : (
+          <>
+            <input
+              onChange={(e) =>
+                setValues((prev) => ({
+                  ...prev,
+                  weight: {
+                    ...prev.weight,
+                    stoneValue: Number(e.target.value),
+                  },
+                }))
+              }
+              type="number"
+              id="stone"
+            />
+            <label htmlFor="stone">Stone</label>
+
+            <input
+              onChange={(e) =>
+                setValues((prev) => ({
+                  ...prev,
+                  weight: { ...prev.weight, lbsValue: Number(e.target.value) },
+                }))
+              }
+              type="number"
+              id="lbs"
+            />
+            <label htmlFor="lbs">Lbs</label>
+          </>
+        )}
         <select
           value={values.weight.metrics}
           onChange={(e) =>
@@ -158,7 +223,7 @@ const CalorieForm = () => {
           onChange={(e) =>
             setValues((prev) => ({
               ...prev,
-              age: e.target.value,
+              age: Number(e.target.value),
             }))
           }
           type="number"

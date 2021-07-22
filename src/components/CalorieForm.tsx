@@ -62,7 +62,9 @@ const CalorieForm = () => {
 
     let heightVal: number;
     let weightVal: number;
-    let result: number;
+    let bmr: number;
+    let tdee: number;
+    let roundedTdee: number;
 
     if (heightMetrics === "feetAndInches") {
       heightVal = convertToCm(footValue, inchValue);
@@ -77,16 +79,16 @@ const CalorieForm = () => {
     }
 
     if (sex === "male") {
-      result = 10 * weightVal + 6.25 * heightVal - 5 * age + 5;
-      console.log(result);
-      console.log(weightVal);
-      console.log(heightVal);
+      bmr = 10 * weightVal + 6.25 * heightVal - 5 * age + 5;
     } else {
-      result = 10 * weightVal + 6.25 * heightVal - 5 * age - 161;
-      console.log(result);
-      console.log(weightVal);
-      console.log(heightVal);
+      bmr = 10 * weightVal + 6.25 * heightVal - 5 * age - 161;
     }
+
+    tdee = bmr * activityLevel;
+    roundedTdee = Math.round(tdee);
+
+    console.log(tdee);
+    console.log(roundedTdee);
   };
 
   return (
@@ -152,7 +154,7 @@ const CalorieForm = () => {
           name=""
           id=""
         >
-          <option value="feetAndInches">Feet.Inches</option>
+          <option value="feetAndInches">Feet/Inches</option>
           <option value="cm">cm</option>
         </select>
       </div>
@@ -212,8 +214,8 @@ const CalorieForm = () => {
           name=""
           id=""
         >
-          <option value="stoneAndPounds">Stone.lbs</option>
-          <option value="kg">KG</option>
+          <option value="stoneAndPounds">Stone/lbs</option>
+          <option value="kg">kg</option>
         </select>
       </div>
       {/* Age */}

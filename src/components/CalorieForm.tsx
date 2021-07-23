@@ -91,44 +91,53 @@ const CalorieForm = () => {
     tdee = bmr * activityLevel;
     roundedTdee = Math.round(tdee);
 
-    console.log(tdee);
-    console.log(roundedTdee);
-
     setMaintenenceCalories(roundedTdee);
   };
 
   return (
     <div className="card">
-      <header>
-        <h1 className="text-xl">Calorie Estimator</h1>
-      </header>
       <div className={`card-inner rounded bg-red-500  ${isFlipped && "flip"}`}>
-        <div className="card-face">
-          <form className="p-4" id="calorieForm" onSubmit={handleFormSubmit}>
-            <div className="form-control">
+        <div className="card-face ">
+          <header>
+            <h1 className="text-3xl text-center p-6">Calorie Estimator</h1>
+          </header>
+          <form
+            className=" flex flex-col px-8 pb-8 "
+            id="calorieForm"
+            onSubmit={handleFormSubmit}
+          >
+            <div className="form-control ">
               <label className="" htmlFor="height">
                 Height:
               </label>
 
               {heightMetrics === "cm" ? (
-                <input
-                  className=""
-                  onChange={(e) =>
-                    setValues((prev) => ({
-                      ...prev,
-                      height: {
-                        ...prev.height,
-                        cmValue: Number(e.target.value),
-                      },
-                    }))
-                  }
-                  value={values.height.cmValue || ""}
-                  type="number"
-                  id="height"
-                />
+                <>
+                  <input
+                    className="w-40 px-2"
+                    onKeyDown={(evt) =>
+                      ["e", "E", "+", "-"].includes(evt.key) &&
+                      evt.preventDefault()
+                    }
+                    onChange={(e) =>
+                      setValues((prev) => ({
+                        ...prev,
+                        height: {
+                          ...prev.height,
+                          cmValue: Number(e.target.value),
+                        },
+                      }))
+                    }
+                    value={values.height.cmValue || ""}
+                    type="number"
+                    id="height"
+                    placeholder="centimetres"
+                  />
+                </>
               ) : (
                 <>
                   <input
+                    className="w-24 px-2"
                     onChange={(e) =>
                       setValues((prev) => ({
                         ...prev,
@@ -141,8 +150,9 @@ const CalorieForm = () => {
                     value={values.height.footValue || ""}
                     type="number"
                     id="foot"
+                    placeholder="feet"
                   />
-                  <label>foot</label>
+
                   <input
                     onChange={(e) =>
                       setValues((prev) => ({
@@ -154,10 +164,11 @@ const CalorieForm = () => {
                       }))
                     }
                     value={values.height.inchValue || ""}
+                    className="w-24 px-2"
                     type="number"
                     id="inches"
+                    placeholder="inches"
                   />
-                  <label>inches</label>
                 </>
               )}
 
@@ -191,8 +202,10 @@ const CalorieForm = () => {
                       },
                     }))
                   }
+                  className="w-40 px-2"
                   type="number"
                   id="weight"
+                  placeholder="kg"
                 />
               ) : (
                 <>
@@ -206,10 +219,11 @@ const CalorieForm = () => {
                         },
                       }))
                     }
+                    className="w-24 px-2"
+                    placeholder="stone"
                     type="number"
                     id="stone"
                   />
-                  <label htmlFor="stone">Stone</label>
 
                   <input
                     onChange={(e) =>
@@ -221,10 +235,11 @@ const CalorieForm = () => {
                         },
                       }))
                     }
+                    className="w-24 px-2"
                     type="number"
                     id="lbs"
+                    placeholder="lbs"
                   />
-                  <label htmlFor="lbs">Lbs</label>
                 </>
               )}
               <select
@@ -252,10 +267,11 @@ const CalorieForm = () => {
                     age: Number(e.target.value),
                   }))
                 }
+                className="w-24 px-2"
                 type="number"
                 id="age"
+                placeholder="Years"
               />
-              <span>years</span>
             </div>
             {/* sex */}
             <div className="form-control">
@@ -297,27 +313,61 @@ const CalorieForm = () => {
               </select>
             </div>
           </form>
+          <section className="px-8">
+            <h3 className=" mb-2">Activity Levels</h3>
+            <div className=" text-base">
+              <p className="mb-2">Sedentary: little or no exercise, desk job</p>
+              <p className="mb-2">
+                Lightly Active: light exercise or sports 1-3 days/week
+              </p>
+              <p className="mb-2">
+                Moderatly Active: moderate exercise or sports 6-7 days/week
+              </p>
+              <p className="mb-2">
+                Very Active: hard exercise every day, or exercising 2 times/day
+              </p>
+              <p className="mb-2">Sedentary: little or no exercise, desk job</p>
+            </div>
+          </section>
+
+          <footer className=" w-full text-center absolute bottom-0">
+            <button
+              onClick={submitButtonHandler}
+              type="submit"
+              form="calorieForm"
+            >
+              Submit
+            </button>
+          </footer>
         </div>
 
         <div className="card-face card-back p-4 ">
+          <header>
+            <h1 className="text-3xl text-center p-6">Calorie Estimator</h1>
+          </header>
           <p>
             Your daily estimated maintenence calories are: {maintenenceCalories}
           </p>
           <p>
             Your daily estimated calorie deficit is: {maintenenceCalories - 500}
           </p>
+          <footer className=" w-full text-center absolute bottom-0">
+            <button
+              onClick={submitButtonHandler}
+              type="submit"
+              form="calorieForm"
+            >
+              Submit
+            </button>
+          </footer>
         </div>
       </div>
-      <footer className=" w-full text-center">
+      {/* <footer className=" w-full text-center absolute bottom-0">
         <button onClick={submitButtonHandler} type="submit" form="calorieForm">
           Submit
         </button>
-      </footer>
+      </footer> */}
     </div>
-
-    // Your daily estimated maintence calories are:
-
-    //Your daily estimated claorie deficit is : (-500)
   );
 };
 

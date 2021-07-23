@@ -4,10 +4,16 @@
 
 @layer base {
   input {
-    @apply w-12 rounded;
+    @apply w-12 mr-2 rounded;
+  }
+  label {
+    @apply mr-2;
   }
 }
 
+.form-control {
+  @apply mb-4;
+}
 .card {
   margin: 100px auto 0;
   width: 400px;

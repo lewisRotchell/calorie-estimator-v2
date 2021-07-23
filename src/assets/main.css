@@ -552,8 +552,13 @@ video {
 }
 
 input {
+  margin-right: 0.5rem;
   width: 3rem;
   border-radius: 0.25rem;
+}
+
+label {
+  margin-right: 0.5rem;
 }
 
 .container {
@@ -29830,6 +29835,10 @@ input {
 
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-control {
+  margin-bottom: 1rem;
 }
 
 .card {

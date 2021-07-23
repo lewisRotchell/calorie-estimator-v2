@@ -37,12 +37,11 @@ const CalorieForm = () => {
     activityLevel: 1.55,
   });
   const [isFlipped, setIsFlipped] = useState(false);
+  const [maintenenceCalories, setMaintenenceCalories] = useState(0);
 
   const submitButtonHandler = () => {
     setIsFlipped((prevState) => !prevState);
   };
-
-  console.log(isFlipped);
 
   const {
     age,
@@ -51,8 +50,6 @@ const CalorieForm = () => {
     height: { cmValue, footValue, inchValue, metrics: heightMetrics },
     weight: { kgValue, stoneValue, lbsValue, metrics: weightMetrics },
   } = values;
-
-  console.log(values);
 
   const convertToCm = (feet: number, inches: number) => {
     const convertedToCm: number = feet * 30.48 + inches * 2.54;
@@ -96,25 +93,26 @@ const CalorieForm = () => {
 
     console.log(tdee);
     console.log(roundedTdee);
+
+    setMaintenenceCalories(roundedTdee);
   };
 
   return (
-    <div className="card  ">
+    <div className="card">
       <header>
         <h1 className="text-xl">Calorie Estimator</h1>
       </header>
-      <div className={`card-inner bg-red-500  ${isFlipped && "flip"}`}>
+      <div className={`card-inner rounded bg-red-500  ${isFlipped && "flip"}`}>
         <div className="card-face">
-          <form
-            className="w-full "
-            id="calorieForm"
-            onSubmit={handleFormSubmit}
-          >
-            <div>
-              <label htmlFor="height">Height</label>
+          <form className="p-4" id="calorieForm" onSubmit={handleFormSubmit}>
+            <div className="form-control">
+              <label className="" htmlFor="height">
+                Height:
+              </label>
 
               {heightMetrics === "cm" ? (
                 <input
+                  className=""
                   onChange={(e) =>
                     setValues((prev) => ({
                       ...prev,
@@ -179,7 +177,7 @@ const CalorieForm = () => {
               </select>
             </div>
             {/* weight */}
-            <div>
+            <div className="form-control">
               <label htmlFor="weight">Weight</label>
 
               {weightMetrics === "kg" ? (
@@ -245,7 +243,7 @@ const CalorieForm = () => {
               </select>
             </div>
             {/* Age */}
-            <div>
+            <div className="form-control">
               <label htmlFor="age">Age</label>
               <input
                 onChange={(e) =>
@@ -260,7 +258,7 @@ const CalorieForm = () => {
               <span>years</span>
             </div>
             {/* sex */}
-            <div>
+            <div className="form-control">
               <label htmlFor="sex">Sex</label>
               <select
                 value={values.sex}
@@ -278,7 +276,7 @@ const CalorieForm = () => {
               </select>
             </div>
             {/* activity level */}
-            <div>
+            <div className="form-control">
               <label htmlFor="activityLevel">Activity Level</label>
               <select
                 value={values.activityLevel}
@@ -301,12 +299,12 @@ const CalorieForm = () => {
           </form>
         </div>
 
-        <div className="card-face card-back ">
+        <div className="card-face card-back p-4 ">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-            nobis corrupti vitae, praesentium illo laborum quos dolor deserunt
-            veritatis numquam, assumenda est, atque quisquam asperiores dolore
-            veniam soluta exercitationem alias.
+            Your daily estimated maintenence calories are: {maintenenceCalories}
+          </p>
+          <p>
+            Your daily estimated calorie deficit is: {maintenenceCalories - 500}
           </p>
         </div>
       </div>

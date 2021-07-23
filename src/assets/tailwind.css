@@ -31,7 +31,7 @@ input[type="number"] {
 .card {
   margin: 100px auto 0;
   width: 500px;
-  height: 700px;
+  height: 720px;
   perspective: 1000px;
 }
 

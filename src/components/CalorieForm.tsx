@@ -39,10 +39,6 @@ const CalorieForm = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [maintenenceCalories, setMaintenenceCalories] = useState(0);
 
-  const submitButtonHandler = () => {
-    setIsFlipped((prevState) => !prevState);
-  };
-
   const {
     age,
     sex,
@@ -92,6 +88,8 @@ const CalorieForm = () => {
     roundedTdee = Math.round(tdee);
 
     setMaintenenceCalories(roundedTdee);
+
+    setIsFlipped((prevState) => !prevState);
   };
 
   return (
@@ -206,6 +204,7 @@ const CalorieForm = () => {
                   type="number"
                   id="weight"
                   placeholder="kg"
+                  value={values.weight.kgValue || ""}
                 />
               ) : (
                 <>
@@ -223,6 +222,7 @@ const CalorieForm = () => {
                     placeholder="stone"
                     type="number"
                     id="stone"
+                    value={values.weight.stoneValue || ""}
                   />
 
                   <input
@@ -239,6 +239,7 @@ const CalorieForm = () => {
                     type="number"
                     id="lbs"
                     placeholder="lbs"
+                    value={values.weight.lbsValue || ""}
                   />
                 </>
               )}
@@ -271,6 +272,7 @@ const CalorieForm = () => {
                 type="number"
                 id="age"
                 placeholder="Years"
+                value={values.age || ""}
               />
             </div>
             {/* sex */}
@@ -305,37 +307,36 @@ const CalorieForm = () => {
                 name=""
                 id=""
               >
-                <option value={1.2}>Sedentry</option>
+                <option value={1.2}>Sedentary</option>
                 <option value={1.375}>Lightly Active</option>
-                <option value={1.55}>Moderatly Active</option>
+                <option value={1.55}>Moderately Active</option>
                 <option value={1.725}>Very Active</option>
                 <option value={1.9}>Extra Active</option>
               </select>
             </div>
           </form>
           <section className="px-8">
-            <h3 className=" mb-2">Activity Levels</h3>
+            <h3 className=" mb-2 text-2xl">Activity Levels</h3>
             <div className=" text-base">
               <p className="mb-2">Sedentary: little or no exercise, desk job</p>
               <p className="mb-2">
-                Lightly Active: light exercise or sports 1-3 days/week
+                Lightly Active: Light exercise or sports 1-3 days/week
               </p>
               <p className="mb-2">
-                Moderatly Active: moderate exercise or sports 6-7 days/week
+                Moderately Active: Moderate exercise or sports 6-7 days/week
               </p>
               <p className="mb-2">
-                Very Active: hard exercise every day, or exercising 2 times/day
+                Very Active: Hard exercise every day, or exercising 2 times/day
               </p>
-              <p className="mb-2">Sedentary: little or no exercise, desk job</p>
+              <p className="mb-2">
+                Extra Active: Very hard exercise/sports and physical job or
+                train twice daily
+              </p>
             </div>
           </section>
 
           <footer className=" w-full text-center absolute bottom-0">
-            <button
-              onClick={submitButtonHandler}
-              type="submit"
-              form="calorieForm"
-            >
+            <button type="submit" form="calorieForm">
               Submit
             </button>
           </footer>
@@ -346,27 +347,20 @@ const CalorieForm = () => {
             <h1 className="text-3xl text-center p-6">Calorie Estimator</h1>
           </header>
           <p>
-            Your daily estimated maintenence calories are: {maintenenceCalories}
+            Your daily estimated maintenence calories are: {maintenenceCalories}{" "}
+            calories
           </p>
           <p>
-            Your daily estimated calorie deficit is: {maintenenceCalories - 500}
+            Your daily estimated calorie deficit is: {maintenenceCalories - 500}{" "}
+            calories
           </p>
           <footer className=" w-full text-center absolute bottom-0">
-            <button
-              onClick={submitButtonHandler}
-              type="submit"
-              form="calorieForm"
-            >
+            <button type="submit" form="calorieForm">
               Submit
             </button>
           </footer>
         </div>
       </div>
-      {/* <footer className=" w-full text-center absolute bottom-0">
-        <button onClick={submitButtonHandler} type="submit" form="calorieForm">
-          Submit
-        </button>
-      </footer> */}
     </div>
   );
 };

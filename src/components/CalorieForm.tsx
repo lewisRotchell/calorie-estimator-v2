@@ -36,6 +36,13 @@ const CalorieForm = () => {
     sex: "male",
     activityLevel: 1.55,
   });
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const submitButtonHandler = () => {
+    setIsFlipped((prevState) => !prevState);
+  };
+
+  console.log(isFlipped);
 
   const {
     age,
@@ -92,188 +99,227 @@ const CalorieForm = () => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <div>
-        <label htmlFor="height">Height</label>
+    <div className="card  ">
+      <header>
+        <h1 className="text-xl">Calorie Estimator</h1>
+      </header>
+      <div className={`card-inner bg-red-500  ${isFlipped && "flip"}`}>
+        <div className="card-face">
+          <form
+            className="w-full "
+            id="calorieForm"
+            onSubmit={handleFormSubmit}
+          >
+            <div>
+              <label htmlFor="height">Height</label>
 
-        {heightMetrics === "cm" ? (
-          <input
-            onChange={(e) =>
-              setValues((prev) => ({
-                ...prev,
-                height: { ...prev.height, cmValue: Number(e.target.value) },
-              }))
-            }
-            value={values.height.cmValue || ""}
-            type="number"
-            id="height"
-          />
-        ) : (
-          <>
-            <input
-              onChange={(e) =>
-                setValues((prev) => ({
-                  ...prev,
-                  height: {
-                    ...prev.height,
-                    footValue: Number(e.target.value),
-                  },
-                }))
-              }
-              value={values.height.footValue || ""}
-              type="number"
-              id="foot"
-            />
-            <label>foot</label>
-            <input
-              onChange={(e) =>
-                setValues((prev) => ({
-                  ...prev,
-                  height: {
-                    ...prev.height,
-                    inchValue: Number(e.target.value),
-                  },
-                }))
-              }
-              value={values.height.inchValue || ""}
-              type="number"
-              id="inches"
-            />
-            <label>inches</label>
-          </>
-        )}
+              {heightMetrics === "cm" ? (
+                <input
+                  onChange={(e) =>
+                    setValues((prev) => ({
+                      ...prev,
+                      height: {
+                        ...prev.height,
+                        cmValue: Number(e.target.value),
+                      },
+                    }))
+                  }
+                  value={values.height.cmValue || ""}
+                  type="number"
+                  id="height"
+                />
+              ) : (
+                <>
+                  <input
+                    onChange={(e) =>
+                      setValues((prev) => ({
+                        ...prev,
+                        height: {
+                          ...prev.height,
+                          footValue: Number(e.target.value),
+                        },
+                      }))
+                    }
+                    value={values.height.footValue || ""}
+                    type="number"
+                    id="foot"
+                  />
+                  <label>foot</label>
+                  <input
+                    onChange={(e) =>
+                      setValues((prev) => ({
+                        ...prev,
+                        height: {
+                          ...prev.height,
+                          inchValue: Number(e.target.value),
+                        },
+                      }))
+                    }
+                    value={values.height.inchValue || ""}
+                    type="number"
+                    id="inches"
+                  />
+                  <label>inches</label>
+                </>
+              )}
 
-        <select
-          value={values.height.metrics}
-          onChange={(e) =>
-            setValues((prev) => ({
-              ...prev,
-              height: { ...prev.height, metrics: e.target.value },
-            }))
-          }
-          name=""
-          id=""
-        >
-          <option value="feetAndInches">Feet/Inches</option>
-          <option value="cm">cm</option>
-        </select>
-      </div>
-      {/* weight */}
-      <div>
-        <label htmlFor="weight">Weight</label>
+              <select
+                value={values.height.metrics}
+                onChange={(e) =>
+                  setValues((prev) => ({
+                    ...prev,
+                    height: { ...prev.height, metrics: e.target.value },
+                  }))
+                }
+                name=""
+                id=""
+              >
+                <option value="feetAndInches">Feet/Inches</option>
+                <option value="cm">cm</option>
+              </select>
+            </div>
+            {/* weight */}
+            <div>
+              <label htmlFor="weight">Weight</label>
 
-        {weightMetrics === "kg" ? (
-          <input
-            onChange={(e) =>
-              setValues((prev) => ({
-                ...prev,
-                weight: { ...prev.weight, kgValue: Number(e.target.value) },
-              }))
-            }
-            type="number"
-            id="weight"
-          />
-        ) : (
-          <>
-            <input
-              onChange={(e) =>
-                setValues((prev) => ({
-                  ...prev,
-                  weight: {
-                    ...prev.weight,
-                    stoneValue: Number(e.target.value),
-                  },
-                }))
-              }
-              type="number"
-              id="stone"
-            />
-            <label htmlFor="stone">Stone</label>
+              {weightMetrics === "kg" ? (
+                <input
+                  onChange={(e) =>
+                    setValues((prev) => ({
+                      ...prev,
+                      weight: {
+                        ...prev.weight,
+                        kgValue: Number(e.target.value),
+                      },
+                    }))
+                  }
+                  type="number"
+                  id="weight"
+                />
+              ) : (
+                <>
+                  <input
+                    onChange={(e) =>
+                      setValues((prev) => ({
+                        ...prev,
+                        weight: {
+                          ...prev.weight,
+                          stoneValue: Number(e.target.value),
+                        },
+                      }))
+                    }
+                    type="number"
+                    id="stone"
+                  />
+                  <label htmlFor="stone">Stone</label>
 
-            <input
-              onChange={(e) =>
-                setValues((prev) => ({
-                  ...prev,
-                  weight: { ...prev.weight, lbsValue: Number(e.target.value) },
-                }))
-              }
-              type="number"
-              id="lbs"
-            />
-            <label htmlFor="lbs">Lbs</label>
-          </>
-        )}
-        <select
-          value={values.weight.metrics}
-          onChange={(e) =>
-            setValues((prev) => ({
-              ...prev,
-              weight: { ...prev.weight, metrics: e.target.value },
-            }))
-          }
-          name=""
-          id=""
-        >
-          <option value="stoneAndPounds">Stone/lbs</option>
-          <option value="kg">kg</option>
-        </select>
+                  <input
+                    onChange={(e) =>
+                      setValues((prev) => ({
+                        ...prev,
+                        weight: {
+                          ...prev.weight,
+                          lbsValue: Number(e.target.value),
+                        },
+                      }))
+                    }
+                    type="number"
+                    id="lbs"
+                  />
+                  <label htmlFor="lbs">Lbs</label>
+                </>
+              )}
+              <select
+                value={values.weight.metrics}
+                onChange={(e) =>
+                  setValues((prev) => ({
+                    ...prev,
+                    weight: { ...prev.weight, metrics: e.target.value },
+                  }))
+                }
+                name=""
+                id=""
+              >
+                <option value="stoneAndPounds">Stone/lbs</option>
+                <option value="kg">kg</option>
+              </select>
+            </div>
+            {/* Age */}
+            <div>
+              <label htmlFor="age">Age</label>
+              <input
+                onChange={(e) =>
+                  setValues((prev) => ({
+                    ...prev,
+                    age: Number(e.target.value),
+                  }))
+                }
+                type="number"
+                id="age"
+              />
+              <span>years</span>
+            </div>
+            {/* sex */}
+            <div>
+              <label htmlFor="sex">Sex</label>
+              <select
+                value={values.sex}
+                onChange={(e) =>
+                  setValues((prev) => ({
+                    ...prev,
+                    sex: e.target.value,
+                  }))
+                }
+                name="sex"
+                id="sex"
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            {/* activity level */}
+            <div>
+              <label htmlFor="activityLevel">Activity Level</label>
+              <select
+                value={values.activityLevel}
+                onChange={(e) =>
+                  setValues((prev) => ({
+                    ...prev,
+                    activityLevel: Number(e.target.value),
+                  }))
+                }
+                name=""
+                id=""
+              >
+                <option value={1.2}>Sedentry</option>
+                <option value={1.375}>Lightly Active</option>
+                <option value={1.55}>Moderatly Active</option>
+                <option value={1.725}>Very Active</option>
+                <option value={1.9}>Extra Active</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <div className="card-face card-back ">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+            nobis corrupti vitae, praesentium illo laborum quos dolor deserunt
+            veritatis numquam, assumenda est, atque quisquam asperiores dolore
+            veniam soluta exercitationem alias.
+          </p>
+        </div>
       </div>
-      {/* Age */}
-      <div>
-        <label htmlFor="age">Age</label>
-        <input
-          onChange={(e) =>
-            setValues((prev) => ({
-              ...prev,
-              age: Number(e.target.value),
-            }))
-          }
-          type="number"
-          id="age"
-        />
-        <span>years</span>
-      </div>
-      {/* sex */}
-      <div>
-        <label htmlFor="sex">Sex</label>
-        <select
-          value={values.sex}
-          onChange={(e) =>
-            setValues((prev) => ({
-              ...prev,
-              sex: e.target.value,
-            }))
-          }
-          name="sex"
-          id="sex"
-        >
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-      </div>
-      {/* activity level */}
-      <div>
-        <label htmlFor="activityLevel">Activity Level</label>
-        <select
-          value={values.activityLevel}
-          onChange={(e) =>
-            setValues((prev) => ({
-              ...prev,
-              activityLevel: Number(e.target.value),
-            }))
-          }
-          name=""
-          id=""
-        >
-          <option value={1.2}>Sedentry</option>
-          <option value={1.375}>Lightly Active</option>
-          <option value={1.55}>Moderatly Active</option>
-          <option value={1.725}>Very Active</option>
-          <option value={1.9}>Extra Active</option>
-        </select>
-      </div>
-      <button>Submit</button>
-    </form>
+      <footer className=" w-full text-center">
+        <button onClick={submitButtonHandler} type="submit" form="calorieForm">
+          Submit
+        </button>
+      </footer>
+    </div>
+
+    // Your daily estimated maintence calories are:
+
+    //Your daily estimated claorie deficit is : (-500)
   );
 };
 

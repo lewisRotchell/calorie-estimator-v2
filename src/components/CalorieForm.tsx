@@ -12,25 +12,17 @@ const CalorieForm = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [maintenenceCalories, setMaintenenceCalories] = useState(0);
 
-  // const {
-  //   age,
-  //   sex,
-  //   activityLevel,
-  //   height: { cmValue, footValue, inchValue, metrics: heightMetrics },
-  //   weight: { kgValue, stoneValue, lbsValue, metrics: weightMetrics },
-  // } = values;
+  // const convertToCm = (feet: number, inches: number) => {
+  //   const convertedToCm: number = feet * 30.48 + inches * 2.54;
+  //   return convertedToCm;
+  // };
 
-  const convertToCm = (feet: number, inches: number) => {
-    const convertedToCm: number = feet * 30.48 + inches * 2.54;
-    return convertedToCm;
-  };
+  // console.log(errors);
 
-  console.log(errors);
-
-  const convertToKg = (stone: number, lbs: number) => {
-    const convertedToKg: number = stone * 6.35029 + lbs * 0.45359237;
-    return convertedToKg;
-  };
+  // const convertToKg = (stone: number, lbs: number) => {
+  //   const convertedToKg: number = stone * 6.35029 + lbs * 0.45359237;
+  //   return convertedToKg;
+  // };
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -63,21 +55,6 @@ const CalorieForm = () => {
     // roundedTdee = Math.round(tdee);
 
     // setMaintenenceCalories(roundedTdee);
-
-    // if (
-    //   (heightMetrics === "feetAndInches" && footValue <= 0) ||
-    //   (heightMetrics === "cm" && cmValue <= 0)
-    // ) {
-    //   setWeightErrors(true);
-    // }
-    // if (
-    //   (weightMetrics === "stoneAndPounds" && stoneValue <= 0) ||
-    //   (weightMetrics === "kg" && kgValue <= 0)
-    // ) {
-
-    // }
-    // console.log(weightErrors);
-    // setIsFlipped((prevState) => !prevState);
   };
 
   return (
@@ -269,12 +246,12 @@ const CalorieForm = () => {
             <h1 className="text-3xl text-center p-6">Calorie Estimator</h1>
           </header>
           <p>
-            Your daily estimated maintenence calories are: {maintenenceCalories}{" "}
-            calories
+            Your daily estimated maintenence calories are:{" "}
+            {values.maintenenceCalories} calories
           </p>
           <p>
-            Your daily estimated calorie deficit is: {maintenenceCalories - 500}{" "}
-            calories
+            Your daily estimated calorie deficit is:{" "}
+            {values.maintenenceCalories - 500} calories
           </p>
           <footer className=" w-full text-center absolute bottom-0">
             <button type="submit" form="calorieForm">

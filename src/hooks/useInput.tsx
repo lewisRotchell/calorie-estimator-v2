@@ -108,6 +108,7 @@ const useInput = (
     if (Object.keys(errors).length === 0 && isSubmitting) {
       flipForm();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
 
   console.log(hasError);

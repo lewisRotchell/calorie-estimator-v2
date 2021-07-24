@@ -10,63 +10,21 @@ const CalorieForm = () => {
   const { handleChangeNum, handleChangeString, handleSubmit, values, errors } =
     useInput(validate, flipForm);
   const [isFlipped, setIsFlipped] = useState(false);
-  const [maintenenceCalories, setMaintenenceCalories] = useState(0);
-
-  // const convertToCm = (feet: number, inches: number) => {
-  //   const convertedToCm: number = feet * 30.48 + inches * 2.54;
-  //   return convertedToCm;
-  // };
-
-  // console.log(errors);
-
-  // const convertToKg = (stone: number, lbs: number) => {
-  //   const convertedToKg: number = stone * 6.35029 + lbs * 0.45359237;
-  //   return convertedToKg;
-  // };
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // let heightVal: number;
-    // let weightVal: number;
-    // let bmr: number;
-    // let tdee: number;
-    // let roundedTdee: number;
-
-    // if (heightMetrics === "feetAndInches") {
-    //   heightVal = convertToCm(footValue, inchValue);
-    // } else {
-    //   heightVal = cmValue;
-    // }
-
-    // if (weightMetrics === "stoneAndPounds") {
-    //   weightVal = convertToKg(stoneValue, lbsValue);
-    // } else {
-    //   weightVal = kgValue;
-    // }
-
-    // if (sex === "male") {
-    //   bmr = 10 * weightVal + 6.25 * heightVal - 5 * age + 5;
-    // } else {
-    //   bmr = 10 * weightVal + 6.25 * heightVal - 5 * age - 161;
-    // }
-
-    // tdee = bmr * activityLevel;
-    // roundedTdee = Math.round(tdee);
-
-    // setMaintenenceCalories(roundedTdee);
-  };
 
   return (
-    <div className="card">
-      <div className={`card-inner rounded bg-red-500  ${isFlipped && "flip"}`}>
-        <div className="card-face ">
+    <div className="card ">
+      <div
+        className={`card-inner bg-white bg-opacity-50 rounded-3xl   ${
+          isFlipped && "flip"
+        }`}
+      >
+        <div className="card-face">
           <header>
             <h1 className="text-3xl text-center p-6">Calorie Estimator</h1>
           </header>
 
           <form
-            className=" flex flex-col px-8 pb-8 "
+            className=" flex flex-col px-2 md:px-8 pb-8 text-base  xs:text-lg "
             id="calorieForm"
             onSubmit={handleSubmit}
           >
@@ -78,7 +36,7 @@ const CalorieForm = () => {
               {values.heightMetrics === "cm" ? (
                 <>
                   <input
-                    className="w-40 px-2"
+                    className="w-28 md:w-24 px-2"
                     onKeyDown={(evt) =>
                       ["e", "E", "+", "-"].includes(evt.key) &&
                       evt.preventDefault()
@@ -96,7 +54,7 @@ const CalorieForm = () => {
                   <input
                     onChange={handleChangeNum}
                     value={values.foot || ""}
-                    className="w-24 px-2"
+                    className="w-20 md:w-24 px-2"
                     type="number"
                     id="foot"
                     placeholder="feet"
@@ -106,7 +64,7 @@ const CalorieForm = () => {
                   <input
                     onChange={handleChangeNum}
                     value={values.inch || ""}
-                    className="w-24 px-2"
+                    className="w-20 md:w-24 px-2"
                     type="number"
                     id="inches"
                     placeholder="inches"
@@ -116,6 +74,7 @@ const CalorieForm = () => {
               )}
 
               <select
+                className="text-xs md:text-base"
                 onChange={handleChangeString}
                 value={values.heightMetrics}
                 name="heightMetrics"
@@ -133,7 +92,7 @@ const CalorieForm = () => {
                 <input
                   onChange={handleChangeNum}
                   value={values.kg || ""}
-                  className="w-40 px-2"
+                  className="w-20 md:w-24 px-2"
                   type="number"
                   id="weight"
                   placeholder="kg"
@@ -144,7 +103,7 @@ const CalorieForm = () => {
                   <input
                     onChange={handleChangeNum}
                     value={values.stone || ""}
-                    className="w-24 px-2"
+                    className="w-20 md:w-24 px-2"
                     placeholder="stone"
                     type="number"
                     id="stone"
@@ -154,7 +113,7 @@ const CalorieForm = () => {
                   <input
                     onChange={handleChangeNum}
                     value={values.lbs || ""}
-                    className="w-24 px-2"
+                    className="w-20 md:w-24 px-2"
                     type="number"
                     id="lbs"
                     placeholder="lbs"
@@ -163,6 +122,7 @@ const CalorieForm = () => {
                 </>
               )}
               <select
+                className="text-xs md:text-base"
                 onChange={handleChangeString}
                 value={values.weightMetrics}
                 name="weightMetrics"
@@ -178,7 +138,7 @@ const CalorieForm = () => {
               <input
                 onChange={handleChangeNum}
                 value={values.age || ""}
-                className="w-24 px-2"
+                className="w-20 md:w-24 px-2"
                 type="number"
                 id="age"
                 placeholder="Years"
@@ -192,6 +152,7 @@ const CalorieForm = () => {
                 onChange={handleChangeString}
                 value={values.sex}
                 name="sex"
+                className="text-xs md:text-base"
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -204,6 +165,7 @@ const CalorieForm = () => {
                 onChange={handleChangeString}
                 value={values.activityLevel}
                 name="activityLevel"
+                className="text-xs md:text-base"
                 id=""
               >
                 <option value={1.2}>Sedentary</option>
@@ -214,9 +176,9 @@ const CalorieForm = () => {
               </select>
             </div>
           </form>
-          <section className="px-8">
+          <section className=" px-2 md:px-8 text-lg md:text-lg">
             <h3 className=" mb-2 text-2xl">Activity Levels</h3>
-            <div className=" text-base">
+            <div className="  ">
               <p className="mb-2">Sedentary: little or no exercise, desk job</p>
               <p className="mb-2">
                 Lightly Active: Light exercise or sports 1-3 days/week
@@ -234,8 +196,12 @@ const CalorieForm = () => {
             </div>
           </section>
 
-          <footer className=" w-full text-center absolute bottom-0">
-            <button type="submit" form="calorieForm">
+          <footer className=" w-full text-center absolute bottom-7">
+            <button
+              className="bg-white py-2 px-20 rounded-2xl"
+              type="submit"
+              form="calorieForm"
+            >
               Submit
             </button>
           </footer>
@@ -253,9 +219,13 @@ const CalorieForm = () => {
             Your daily estimated calorie deficit is:{" "}
             {values.maintenenceCalories - 500} calories
           </p>
-          <footer className=" w-full text-center absolute bottom-0">
-            <button type="submit" form="calorieForm">
-              Submit
+          <footer className=" w-full text-center absolute bottom-7">
+            <button
+              className="bg-white py-2 px-20 rounded-2xl"
+              type="submit"
+              form="calorieForm"
+            >
+              Back
             </button>
           </footer>
         </div>

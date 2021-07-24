@@ -6,7 +6,7 @@
 
 @layer base {
   input {
-    @apply mr-2 rounded;
+    @apply mr-2 rounded w-20 md:w-24 px-2;
   }
   label {
     @apply mr-2;
@@ -29,18 +29,27 @@ input[type="number"] {
   @apply mb-4 inline-block;
 }
 .card {
-  margin: 100px auto 0;
-  width: 500px;
-  height: 720px;
+  margin: 25px auto 0;
+  width: 100%;
+  height: 800px;
   perspective: 1000px;
+}
+@media (min-width: 550px) {
+  .card {
+    height: 750px;
+    width: 500px;
+    margin: 100px auto 0;
+  }
 }
 
 .card-inner {
   width: 100%;
-  height: 90%;
+  height: 100%;
   transition: transform 1s;
   transform-style: preserve-3d;
   position: relative;
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 .card-face {

@@ -4,10 +4,10 @@ import validate from "../validateForm";
 
 type Props = {
   setIsSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
-  handleChangeNum: any;
-  values: any;
-  handleChangeString: any;
-  handleSubmit: any;
+  handleChangeNum: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  values: { [n: string]: number | string };
+  handleChangeString: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleSubmit: (e: React.ChangeEvent<HTMLFormElement>) => void;
 };
 
 const CalorieForm: React.FC<Props> = ({
@@ -20,6 +20,8 @@ const CalorieForm: React.FC<Props> = ({
   const submitDetails = () => {
     setIsSubmitted((prevState) => !prevState);
   };
+
+  console.log(values);
 
   const { errors } = useInput(validate, submitDetails);
   return (

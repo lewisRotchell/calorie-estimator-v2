@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import CalorieForm from "./CalorieForm";
 import CalorieResults from "./CalorieResults";
 import useInput from "../hooks/useInput";
@@ -29,7 +29,7 @@ const CalorieContainer = () => {
           values={values}
         />
       ) : (
-        <CalorieResults setIsSubmitted={setIsSubmitted} />
+        <CalorieResults values={values} setIsSubmitted={setIsSubmitted} />
       )}
 
       {/* <footer className="">

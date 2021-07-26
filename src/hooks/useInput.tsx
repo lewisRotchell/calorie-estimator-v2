@@ -4,8 +4,6 @@ const useInput = (
   validate: (values: { [n: string]: number | string }) => {},
   submitDetails: () => void
 ) => {
-  let hasError = true;
-
   type FormState = {
     cm: number;
     foot: number;

@@ -1,18 +1,19 @@
 import React from "react";
 type Props = {
   setIsSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
+  values: any;
 };
 
-const CalorieResults: React.FC<Props> = ({ setIsSubmitted }) => {
+const CalorieResults: React.FC<Props> = ({ setIsSubmitted, values }) => {
   return (
     <div className="card-face card-back  ">
       <p>
         Your daily estimated maintenence calories are:{" "}
-        {/* {values.maintenenceCalories} calories */}
+        {values.maintenenceCalories} calories
       </p>
       <p>
         Your daily estimated calorie deficit is:{" "}
-        {/* {values.maintenenceCalories - 500} calories */}
+        {values.maintenenceCalories - 500} calories
       </p>
       <button onClick={() => setIsSubmitted(false)}>Back</button>
     </div>

@@ -1,9 +1,9 @@
-import CalorieForm from "./components/CalorieForm";
+import CalorieContainer from "./components/CalorieContainer";
 
 function App() {
   return (
-    <div className="text-xl font-body box-border text-gray-700 ">
-      <CalorieForm />
+    <div className="">
+      <CalorieContainer />
     </div>
   );
 }

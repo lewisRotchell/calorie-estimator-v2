@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const useInput = (
   validate: (values: { [n: string]: number | string }) => {},
-  flipForm: () => void
+  submitDetails: () => void
 ) => {
   let hasError = true;
 
@@ -106,12 +106,10 @@ const useInput = (
 
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
-      flipForm();
+      submitDetails();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
-
-  console.log(hasError);
 
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();

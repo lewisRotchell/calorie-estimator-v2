@@ -1,3 +1,4 @@
+import "./assets/App.scss";
 import CalorieContainer from "./components/CalorieContainer";
 
 function App() {

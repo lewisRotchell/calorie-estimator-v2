@@ -1,0 +1,26 @@
+.calorieForm {
+  .formControl {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    margin-bottom: 1rem;
+
+    label {
+      margin-bottom: 0.25rem;
+      width: 100%;
+    }
+
+    input {
+      margin-right: 0.5rem;
+    }
+
+    .sexSelect {
+      width: 120px;
+    }
+
+    .activitySelect {
+      width: 160px;
+    }
+  }
+}

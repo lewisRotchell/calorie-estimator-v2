@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { classicNameResolver } from "typescript";
 import useInput from "../hooks/useInput";
 import validate from "../validateForm";
+import classes from "./CalorieForm.module.scss";
 
 type Props = {
   setIsSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
@@ -25,70 +27,76 @@ const CalorieForm: React.FC<Props> = ({
 
   const { errors } = useInput(validate, submitDetails);
   return (
-    <div className="card ">
-      <div className="card-face">
-        <form className=" " id="calorieForm" onSubmit={handleSubmit}>
-          <div className="form-control ">
-            <label className="" htmlFor="height">
-              Height:
-            </label>
+    <div className={classes.calorieForm}>
+      <form className=" " id="calorieForm" onSubmit={handleSubmit}>
+        <div className={classes.formControl}>
+          <label className="">Height:</label>
 
-            {values.heightMetrics === "cm" ? (
-              <>
-                <input
-                  className=""
-                  onKeyDown={(evt) =>
-                    ["e", "E", "+", "-"].includes(evt.key) &&
-                    evt.preventDefault()
-                  }
-                  onChange={handleChangeNum}
-                  value={values.cm || ""}
-                  type="number"
-                  id="height"
-                  placeholder="centimetres"
-                  name="cm"
-                />
-              </>
-            ) : (
-              <>
-                <input
-                  onChange={handleChangeNum}
-                  value={values.foot || ""}
-                  className=""
-                  type="number"
-                  id="foot"
-                  placeholder="feet"
-                  name="foot"
-                />
+          {values.heightMetrics === "cm" ? (
+            <div>
+              <input
+                className=""
+                onKeyDown={(evt) =>
+                  ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()
+                }
+                onChange={handleChangeNum}
+                value={values.cm || ""}
+                type="number"
+                id="height"
+                placeholder="cm"
+                name="cm"
+              />
+              <select
+                className=""
+                onChange={handleChangeString}
+                value={values.heightMetrics}
+                name="heightMetrics"
+                id=""
+              >
+                <option value="feetAndInches">Feet/Inches</option>
+                <option value="cm">cm</option>
+              </select>
+            </div>
+          ) : (
+            <div>
+              <input
+                onChange={handleChangeNum}
+                value={values.foot || ""}
+                className={classes.inputA}
+                type="number"
+                id="foot"
+                placeholder="feet"
+                name="foot"
+              />
 
-                <input
-                  onChange={handleChangeNum}
-                  value={values.inch || ""}
-                  className=""
-                  type="number"
-                  id="inches"
-                  placeholder="inches"
-                  name="inch"
-                />
-              </>
-            )}
+              <input
+                onChange={handleChangeNum}
+                value={values.inch || ""}
+                className=""
+                type="number"
+                id="inches"
+                placeholder="inches"
+                name="inch"
+              />
+              <select
+                className=""
+                onChange={handleChangeString}
+                value={values.heightMetrics}
+                name="heightMetrics"
+                id=""
+              >
+                <option value="feetAndInches">Feet/Inches</option>
+                <option value="cm">cm</option>
+              </select>
+            </div>
+          )}
+        </div>
+        {/* weight */}
+        <div className={classes.formControl}>
+          <label htmlFor="weight">Weight</label>
 
-            <select
-              className=""
-              onChange={handleChangeString}
-              value={values.heightMetrics}
-              name="heightMetrics"
-              id=""
-            >
-              <option value="feetAndInches">Feet/Inches</option>
-              <option value="cm">cm</option>
-            </select>
-          </div>
-          {/* weight */}
-          <div className="form-control">
-            <label htmlFor="weight">Weight</label>
-
-            {values.weightMetrics === "kg" ? (
+          {values.weightMetrics === "kg" ? (
+            <div>
               <input
                 onChange={handleChangeNum}
                 value={values.kg || ""}
@@ -98,104 +106,114 @@ const CalorieForm: React.FC<Props> = ({
                 placeholder="kg"
                 name="kg"
               />
-            ) : (
-              <>
-                <input
-                  onChange={handleChangeNum}
-                  value={values.stone || ""}
-                  className=""
-                  placeholder="stone"
-                  type="number"
-                  id="stone"
-                  name="stone"
-                />
+              <select
+                className=""
+                onChange={handleChangeString}
+                value={values.weightMetrics}
+                name="weightMetrics"
+                id=""
+              >
+                <option value="stoneAndPounds">Stone/lbs</option>
+                <option value="kg">kg</option>
+              </select>
+            </div>
+          ) : (
+            <div>
+              <input
+                onChange={handleChangeNum}
+                value={values.stone || ""}
+                className=""
+                placeholder="stone"
+                type="number"
+                id="stone"
+                name="stone"
+              />
 
-                <input
-                  onChange={handleChangeNum}
-                  value={values.lbs || ""}
-                  className=""
-                  type="number"
-                  id="lbs"
-                  placeholder="lbs"
-                  name="lbs"
-                />
-              </>
-            )}
-            <select
-              className=""
-              onChange={handleChangeString}
-              value={values.weightMetrics}
-              name="weightMetrics"
-              id=""
-            >
-              <option value="stoneAndPounds">Stone/lbs</option>
-              <option value="kg">kg</option>
-            </select>
-          </div>
-          {/* Age */}
-          <div className="form-control">
-            <label htmlFor="age">Age</label>
-            <input
-              onChange={handleChangeNum}
-              value={values.age || ""}
-              className=""
-              type="number"
-              id="age"
-              placeholder="Years"
-              name="age"
-            />
-          </div>
-          {/* sex */}
-          <div className="form-control">
-            <label htmlFor="sex">Sex</label>
-            <select
-              onChange={handleChangeString}
-              value={values.sex}
-              name="sex"
-              className=""
-            >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-            </select>
-          </div>
-          {/* activity level */}
-          <div className="form-control">
-            <label htmlFor="activityLevel">Activity Level</label>
-            <select
-              onChange={handleChangeString}
-              value={values.activityLevel}
-              name="activityLevel"
-              className=""
-              id=""
-            >
-              <option value={1.2}>Sedentary</option>
-              <option value={1.375}>Lightly Active</option>
-              <option value={1.55}>Moderately Active</option>
-              <option value={1.725}>Very Active</option>
-              <option value={1.9}>Extra Active</option>
-            </select>
-          </div>
-        </form>
-        <section className=" ">
-          <h3 className=" ">Activity Levels</h3>
-          <div className="  ">
-            <p className="">Sedentary: little or no exercise, desk job</p>
-            <p className="">
-              Lightly Active: Light exercise or sports 1-3 days/week
-            </p>
-            <p className="">
-              Moderately Active: Moderate exercise or sports 6-7 days/week
-            </p>
-            <p className="">
-              Very Active: Hard exercise every day, or exercising 2 times/day
-            </p>
-            <p className="">
-              Extra Active: Very hard exercise/sports and physical job or train
-              twice daily
-            </p>
-          </div>
-        </section>
-      </div>
+              <input
+                onChange={handleChangeNum}
+                value={values.lbs || ""}
+                className=""
+                type="number"
+                id="lbs"
+                placeholder="lbs"
+                name="lbs"
+              />
+              <select
+                className=""
+                onChange={handleChangeString}
+                value={values.weightMetrics}
+                name="weightMetrics"
+                id=""
+              >
+                <option value="stoneAndPounds">Stone/lbs</option>
+                <option value="kg">kg</option>
+              </select>
+            </div>
+          )}
+        </div>
+        {/* Age */}
+        <div className={classes.formControl}>
+          <label htmlFor="age">Age</label>
+          <input
+            onChange={handleChangeNum}
+            value={values.age || ""}
+            className=""
+            type="number"
+            id="age"
+            placeholder="Years"
+            name="age"
+          />
+        </div>
+        {/* sex */}
+        <div className={classes.formControl}>
+          <label htmlFor="sex">Sex</label>
+          <select
+            onChange={handleChangeString}
+            value={values.sex}
+            name="sex"
+            className={classes.sexSelect}
+          >
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        {/* activity level */}
+        <div className={classes.formControl}>
+          <label htmlFor="activityLevel">Activity Level</label>
+          <select
+            onChange={handleChangeString}
+            value={values.activityLevel}
+            name="activityLevel"
+            className={classes.activitySelect}
+            id=""
+          >
+            <option value={1.2}>Sedentary</option>
+            <option value={1.375}>Lightly Active</option>
+            <option value={1.55}>Moderately Active</option>
+            <option value={1.725}>Very Active</option>
+            <option value={1.9}>Extra Active</option>
+          </select>
+        </div>
+      </form>
+      <section className=" ">
+        <h3 className=" ">Activity Levels</h3>
+        <div className="  ">
+          <p className="">Sedentary: little or no exercise, desk job</p>
+          <p className="">
+            Lightly Active: Light exercise or sports 1-3 days/week
+          </p>
+          <p className="">
+            Moderately Active: Moderate exercise or sports 6-7 days/week
+          </p>
+          <p className="">
+            Very Active: Hard exercise every day, or exercising 2 times/day
+          </p>
+          <p className="">
+            Extra Active: Very hard exercise/sports and physical job or train
+            twice daily
+          </p>
+        </div>
+      </section>
       <button className="" type="submit" form="calorieForm">
         Submit
       </button>

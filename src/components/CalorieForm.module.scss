@@ -1,18 +1,29 @@
 .calorieForm {
   .formControl {
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
-
+    flex-direction: column;
     margin-bottom: 1rem;
 
-    label {
-      margin-bottom: 0.25rem;
-      width: 100%;
+    p {
+      margin-right: 0.5rem;
+      display: inline;
     }
 
     input {
-      margin-right: 0.5rem;
+      margin-right: 0.25rem;
+    }
+
+    label {
+      font-size: 0.75rem;
+      margin-right: 0.75rem;
+    }
+
+    &__top {
+      margin-bottom: 0.5rem;
+    }
+
+    &__bottom {
     }
 
     .sexSelect {
@@ -21,6 +32,13 @@
 
     .activitySelect {
       width: 160px;
+    }
+
+    .labelL {
+      font-size: 1rem;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
     }
   }
 }

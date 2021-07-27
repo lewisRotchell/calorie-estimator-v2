@@ -1,5 +1,4 @@
 import React from "react";
-import { classicNameResolver } from "typescript";
 import useInput from "../hooks/useInput";
 import validate from "../validateForm";
 import classes from "./CalorieForm.module.scss";
@@ -30,130 +29,134 @@ const CalorieForm: React.FC<Props> = ({
     <div className={classes.calorieForm}>
       <form className=" " id="calorieForm" onSubmit={handleSubmit}>
         <div className={classes.formControl}>
-          <label className="">Height:</label>
+          <div className={classes.formControl__top}>
+            <p className="">Height:</p>
+            <select
+              className=""
+              onChange={handleChangeString}
+              value={values.heightMetrics}
+              name="heightMetrics"
+              id=""
+            >
+              <option value="feetAndInches">Feet/Inches</option>
+              <option value="cm">cm</option>
+            </select>
+          </div>
 
           {values.heightMetrics === "cm" ? (
-            <div>
-              <input
-                className=""
-                onKeyDown={(evt) =>
-                  ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()
-                }
-                onChange={handleChangeNum}
-                value={values.cm || ""}
-                type="number"
-                id="height"
-                placeholder="cm"
-                name="cm"
-              />
-              <select
-                className=""
-                onChange={handleChangeString}
-                value={values.heightMetrics}
-                name="heightMetrics"
-                id=""
-              >
-                <option value="feetAndInches">Feet/Inches</option>
-                <option value="cm">cm</option>
-              </select>
+            <div className={classes.formControl__bottom}>
+              <label>
+                <input
+                  className=""
+                  onKeyDown={(evt) =>
+                    ["e", "E", "+", "-"].includes(evt.key) &&
+                    evt.preventDefault()
+                  }
+                  onChange={handleChangeNum}
+                  value={values.cm || ""}
+                  type="number"
+                  id="height"
+                  placeholder="cm"
+                  name="cm"
+                />
+                cm
+              </label>
             </div>
           ) : (
-            <div>
-              <input
-                onChange={handleChangeNum}
-                value={values.foot || ""}
-                className={classes.inputA}
-                type="number"
-                id="foot"
-                placeholder="feet"
-                name="foot"
-              />
+            <div className={classes.formControl__bottom}>
+              <label>
+                <input
+                  onChange={handleChangeNum}
+                  value={values.foot || ""}
+                  type="number"
+                  id="foot"
+                  placeholder="feet"
+                  name="foot"
+                />
+                foot
+              </label>
 
-              <input
-                onChange={handleChangeNum}
-                value={values.inch || ""}
-                className=""
-                type="number"
-                id="inches"
-                placeholder="inches"
-                name="inch"
-              />
-              <select
-                className=""
-                onChange={handleChangeString}
-                value={values.heightMetrics}
-                name="heightMetrics"
-                id=""
-              >
-                <option value="feetAndInches">Feet/Inches</option>
-                <option value="cm">cm</option>
-              </select>
+              <label>
+                <input
+                  onChange={handleChangeNum}
+                  value={values.inch || ""}
+                  className=""
+                  type="number"
+                  id="inches"
+                  placeholder="inches"
+                  name="inch"
+                />
+                inches
+              </label>
             </div>
           )}
         </div>
         {/* weight */}
         <div className={classes.formControl}>
-          <label htmlFor="weight">Weight</label>
+          <div className={classes.formControl__top}>
+            <p>Weight</p>
+            <select
+              className=""
+              onChange={handleChangeString}
+              value={values.weightMetrics}
+              name="weightMetrics"
+              id=""
+            >
+              <option value="stoneAndPounds">Stone/lbs</option>
+              <option value="kg">kg</option>
+            </select>
+          </div>
 
           {values.weightMetrics === "kg" ? (
-            <div>
-              <input
-                onChange={handleChangeNum}
-                value={values.kg || ""}
-                className=""
-                type="number"
-                id="weight"
-                placeholder="kg"
-                name="kg"
-              />
-              <select
-                className=""
-                onChange={handleChangeString}
-                value={values.weightMetrics}
-                name="weightMetrics"
-                id=""
-              >
-                <option value="stoneAndPounds">Stone/lbs</option>
-                <option value="kg">kg</option>
-              </select>
+            <div className={classes.formControl__bottom}>
+              <label>
+                <input
+                  onChange={handleChangeNum}
+                  value={values.kg || ""}
+                  className=""
+                  type="number"
+                  id="weight"
+                  placeholder="kg"
+                  name="kg"
+                />
+                kg
+              </label>
             </div>
           ) : (
-            <div>
-              <input
-                onChange={handleChangeNum}
-                value={values.stone || ""}
-                className=""
-                placeholder="stone"
-                type="number"
-                id="stone"
-                name="stone"
-              />
+            <div className={classes.formControl__bottom}>
+              <label>
+                <input
+                  onChange={handleChangeNum}
+                  value={values.stone || ""}
+                  className=""
+                  placeholder="stone"
+                  type="number"
+                  id="stone"
+                  name="stone"
+                />
+                stone
+              </label>
 
-              <input
-                onChange={handleChangeNum}
-                value={values.lbs || ""}
-                className=""
-                type="number"
-                id="lbs"
-                placeholder="lbs"
-                name="lbs"
-              />
-              <select
-                className=""
-                onChange={handleChangeString}
-                value={values.weightMetrics}
-                name="weightMetrics"
-                id=""
-              >
-                <option value="stoneAndPounds">Stone/lbs</option>
-                <option value="kg">kg</option>
-              </select>
+              <label>
+                <input
+                  onChange={handleChangeNum}
+                  value={values.lbs || ""}
+                  className=""
+                  type="number"
+                  id="lbs"
+                  placeholder="lbs"
+                  name="lbs"
+                />
+                lbs
+              </label>
             </div>
           )}
         </div>
         {/* Age */}
         <div className={classes.formControl}>
-          <label htmlFor="age">Age</label>
+          <label className={classes.labelL} htmlFor="age">
+            Age
+          </label>
           <input
             onChange={handleChangeNum}
             value={values.age || ""}
@@ -166,12 +169,15 @@ const CalorieForm: React.FC<Props> = ({
         </div>
         {/* sex */}
         <div className={classes.formControl}>
-          <label htmlFor="sex">Sex</label>
+          <label className={classes.labelL} htmlFor="sex">
+            Sex
+          </label>
           <select
             onChange={handleChangeString}
             value={values.sex}
             name="sex"
             className={classes.sexSelect}
+            id="sex"
           >
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -179,13 +185,15 @@ const CalorieForm: React.FC<Props> = ({
         </div>
         {/* activity level */}
         <div className={classes.formControl}>
-          <label htmlFor="activityLevel">Activity Level</label>
+          <label className={classes.labelL} htmlFor="activityLevel">
+            Activity Level
+          </label>
           <select
             onChange={handleChangeString}
             value={values.activityLevel}
             name="activityLevel"
             className={classes.activitySelect}
-            id=""
+            id="activityLevel"
           >
             <option value={1.2}>Sedentary</option>
             <option value={1.375}>Lightly Active</option>

@@ -14,9 +14,6 @@ const CalorieContainer = () => {
   const { handleChangeNum, handleChangeString, handleSubmit, values, errors } =
     useInput(validate, submitDetails);
 
-  console.log(isSubmitted);
-  console.log(errors);
-
   return (
     <>
       <header>

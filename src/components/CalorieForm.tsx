@@ -1,6 +1,4 @@
 import React from "react";
-import useInput from "../hooks/useInput";
-import validate from "../validateForm";
 import classes from "./CalorieForm.module.scss";
 
 type Props = {
@@ -9,28 +7,17 @@ type Props = {
   values: { [n: string]: number | string };
   errors: {};
   handleChangeString: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  // handleSubmit: (e: React.ChangeEvent<HTMLFormElement>) => void;
-  handleSubmit: any;
+  handleSubmit: (e: React.ChangeEvent<HTMLFormElement>) => void;
 };
 
 const CalorieForm: React.FC<Props> = ({
-  setIsSubmitted,
   handleChangeNum,
   handleChangeString,
   handleSubmit,
   values,
   errors,
 }) => {
-  const submitDetails = () => {
-    setIsSubmitted((prevState) => !prevState);
-  };
-
-  console.log(values);
   console.log(errors);
-  if (Object.keys(errors).length > 0) {
-    console.log("hi");
-  }
-
   return (
     <div className={classes.calorieForm}>
       <form className=" " id="calorieForm" onSubmit={handleSubmit}>

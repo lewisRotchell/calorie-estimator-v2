@@ -6,14 +6,16 @@ import validate from "../validateForm";
 
 const CalorieContainer = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
-  console.log(isSubmitted);
 
   const submitDetails = () => {
-    setIsSubmitted((prevState) => !prevState);
+    setIsSubmitted(true);
   };
 
   const { handleChangeNum, handleChangeString, handleSubmit, values, errors } =
     useInput(validate, submitDetails);
+
+  console.log(isSubmitted);
+  console.log(errors);
 
   return (
     <>
@@ -27,22 +29,20 @@ const CalorieContainer = () => {
           handleChangeString={handleChangeString}
           handleSubmit={handleSubmit}
           values={values}
+          errors={errors}
         />
       ) : (
         <CalorieResults values={values} setIsSubmitted={setIsSubmitted} />
       )}
+      {!isSubmitted && (
+        <button type="submit" form="calorieForm" onSubmit={handleSubmit}>
+          Submit
+        </button>
+      )}
 
-      {/* <footer className="">
-        {!isSubmitted ? (
-          <button className="" type="submit" form="calorieForm">
-            Submit
-          </button>
-        ) : (
-          <button className="" onClick={() => setIsSubmitted(false)}>
-            Back
-          </button>
-        )}
-      </footer> */}
+      {isSubmitted && (
+        <button onClick={() => setIsSubmitted(false)}>Back</button>
+      )}
     </>
   );
 };

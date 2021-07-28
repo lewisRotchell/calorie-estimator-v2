@@ -7,8 +7,10 @@ type Props = {
   setIsSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
   handleChangeNum: (e: React.ChangeEvent<HTMLInputElement>) => void;
   values: { [n: string]: number | string };
+  errors: {};
   handleChangeString: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  handleSubmit: (e: React.ChangeEvent<HTMLFormElement>) => void;
+  // handleSubmit: (e: React.ChangeEvent<HTMLFormElement>) => void;
+  handleSubmit: any;
 };
 
 const CalorieForm: React.FC<Props> = ({
@@ -17,14 +19,18 @@ const CalorieForm: React.FC<Props> = ({
   handleChangeString,
   handleSubmit,
   values,
+  errors,
 }) => {
   const submitDetails = () => {
     setIsSubmitted((prevState) => !prevState);
   };
 
   console.log(values);
+  console.log(errors);
+  if (Object.keys(errors).length > 0) {
+    console.log("hi");
+  }
 
-  const { errors } = useInput(validate, submitDetails);
   return (
     <div className={classes.calorieForm}>
       <form className=" " id="calorieForm" onSubmit={handleSubmit}>
@@ -222,9 +228,9 @@ const CalorieForm: React.FC<Props> = ({
           </p>
         </div>
       </section>
-      <button className="" type="submit" form="calorieForm">
+      {/* <button className="" type="submit" form="calorieForm">
         Submit
-      </button>
+      </button> */}
     </div>
   );
 };

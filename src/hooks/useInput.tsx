@@ -109,7 +109,14 @@ const useInput = (
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [errors]);
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+  // const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   getCalories();
+  //   setErrors(validate(values));
+  //   setIsSubmitting(true);
+  // };
+
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     getCalories();
     setErrors(validate(values));

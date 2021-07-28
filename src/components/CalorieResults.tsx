@@ -15,7 +15,7 @@ const CalorieResults: React.FC<Props> = ({ setIsSubmitted, values }) => {
         Your daily estimated calorie deficit is:{" "}
         {values.maintenenceCalories - 500} calories
       </p>
-      <button onClick={() => setIsSubmitted(false)}>Back</button>
+      {/* <button onClick={() => setIsSubmitted(false)}>Back</button> */}
     </div>
   );
 };

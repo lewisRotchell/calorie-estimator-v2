@@ -208,7 +208,7 @@ const CalorieForm: React.FC<Props> = ({
           </select>
         </div>
       </form>
-      <section className=" ">
+      {/* <section className=" ">
         <h3 className=" ">Activity Levels</h3>
         <div className="  ">
           <p className="">Sedentary: little or no exercise, desk job</p>
@@ -226,7 +226,7 @@ const CalorieForm: React.FC<Props> = ({
             twice daily
           </p>
         </div>
-      </section>
+      </section> */}
       {/* <button className="" type="submit" form="calorieForm">
         Submit
       </button> */}

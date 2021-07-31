@@ -3,6 +3,7 @@ import CalorieForm from "./CalorieForm";
 import CalorieResults from "./CalorieResults";
 import useInput from "../hooks/useInput";
 import validate from "../validateForm";
+import classes from "./CalorieContainer.module.scss";
 
 const CalorieContainer = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -21,7 +22,8 @@ const CalorieContainer = () => {
       <header>
         <h1 className="">Calorie Estimator</h1>
       </header>
-      {!isSubmitted ? (
+
+      {!isSubmitted && (
         <CalorieForm
           setIsSubmitted={setIsSubmitted}
           handleChangeNum={handleChangeNum}
@@ -31,13 +33,16 @@ const CalorieContainer = () => {
           errors={errors}
           setHeight={setHeight}
         />
-      ) : (
+      )}
+
+      {isSubmitted && (
         <CalorieResults
           values={values}
           setIsSubmitted={setIsSubmitted}
           height={height}
         />
       )}
+
       {!isSubmitted && (
         <button type="submit" form="calorieForm" onSubmit={handleSubmit}>
           Submit

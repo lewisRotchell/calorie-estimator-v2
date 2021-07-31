@@ -1,4 +1,5 @@
 import React from "react";
+import classes from "./CalorieResults.module.scss";
 type Props = {
   setIsSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
   values: any;
@@ -11,7 +12,7 @@ const CalorieResults: React.FC<Props> = ({
   height,
 }) => {
   return (
-    <div style={{ height: height }} className="card-face card-back  ">
+    <div className={classes.calorieResults} style={{ height: height }}>
       <p>
         Your daily estimated maintenence calories are:{" "}
         {values.maintenenceCalories} calories

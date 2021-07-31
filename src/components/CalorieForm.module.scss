@@ -1,3 +1,5 @@
+@import "../assets/mixins";
+
 .calorieForm {
   .formControl {
     display: flex;
@@ -7,23 +9,30 @@
 
     p {
       margin-right: 0.5rem;
-      display: inline;
+      margin-bottom: 0.5rem;
     }
 
     input {
       margin-right: 0.25rem;
+      font-size: 1rem;
     }
 
     label {
-      font-size: 0.75rem;
+      font-size: 1rem;
       margin-right: 0.75rem;
     }
 
+    select {
+      font-size: 1rem;
+      display: inline;
+    }
+
     &__top {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.8rem;
     }
 
     &__bottom {
+      margin-bottom: 0.8rem;
     }
 
     .sexSelect {
@@ -31,10 +40,10 @@
     }
 
     .activitySelect {
-      width: 160px;
+      width: 200px;
     }
 
-    .labelL {
+    .formSubtitle {
       font-size: 1rem;
       display: flex;
       flex-direction: column;

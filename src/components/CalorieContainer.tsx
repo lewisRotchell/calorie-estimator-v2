@@ -6,6 +6,8 @@ import validate from "../validateForm";
 
 const CalorieContainer = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [height, setHeight] = useState<number | null | undefined>(null);
+  console.log(height);
 
   const submitDetails = () => {
     setIsSubmitted(true);
@@ -27,9 +29,14 @@ const CalorieContainer = () => {
           handleSubmit={handleSubmit}
           values={values}
           errors={errors}
+          setHeight={setHeight}
         />
       ) : (
-        <CalorieResults values={values} setIsSubmitted={setIsSubmitted} />
+        <CalorieResults
+          values={values}
+          setIsSubmitted={setIsSubmitted}
+          height={height}
+        />
       )}
       {!isSubmitted && (
         <button type="submit" form="calorieForm" onSubmit={handleSubmit}>

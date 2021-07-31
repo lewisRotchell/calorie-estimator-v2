@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import classes from "./CalorieForm.module.scss";
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
   errors: {};
   handleChangeString: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleSubmit: (e: React.ChangeEvent<HTMLFormElement>) => void;
+  setHeight: any;
 };
 
 const CalorieForm: React.FC<Props> = ({
@@ -16,20 +17,30 @@ const CalorieForm: React.FC<Props> = ({
   handleSubmit,
   values,
   errors,
+  setHeight,
 }) => {
   console.log(errors);
+
+  const div = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const height = div.current?.offsetHeight;
+    setHeight(height);
+  });
+
   return (
-    <div className={classes.calorieForm}>
+    <div ref={div} className={classes.calorieForm}>
       <form className=" " id="calorieForm" onSubmit={handleSubmit}>
         <div className={classes.formControl}>
           <div className={classes.formControl__top}>
-            <p className="">Height:</p>
+            <p className="">Height</p>
+            <label htmlFor="heightUnits">Units:</label>
             <select
-              className=""
+              className={classes.selectSmallest}
               onChange={handleChangeString}
               value={values.heightMetrics}
               name="heightMetrics"
-              id=""
+              id="heightUnits"
             >
               <option value="feetAndInches">Feet/Inches</option>
               <option value="cm">cm</option>
@@ -88,12 +99,13 @@ const CalorieForm: React.FC<Props> = ({
         <div className={classes.formControl}>
           <div className={classes.formControl__top}>
             <p>Weight</p>
+            <label htmlFor="weightUnits">Units:</label>
             <select
               className=""
               onChange={handleChangeString}
               value={values.weightMetrics}
               name="weightMetrics"
-              id=""
+              id="weightUnits"
             >
               <option value="stoneAndPounds">Stone/lbs</option>
               <option value="kg">kg</option>
@@ -147,7 +159,7 @@ const CalorieForm: React.FC<Props> = ({
         </div>
         {/* Age */}
         <div className={classes.formControl}>
-          <label className={classes.labelL} htmlFor="age">
+          <label className={classes.formSubtitle} htmlFor="age">
             Age
           </label>
           <input
@@ -162,7 +174,7 @@ const CalorieForm: React.FC<Props> = ({
         </div>
         {/* sex */}
         <div className={classes.formControl}>
-          <label className={classes.labelL} htmlFor="sex">
+          <label className={classes.formSubtitle} htmlFor="sex">
             Sex
           </label>
           <select
@@ -178,7 +190,7 @@ const CalorieForm: React.FC<Props> = ({
         </div>
         {/* activity level */}
         <div className={classes.formControl}>
-          <label className={classes.labelL} htmlFor="activityLevel">
+          <label className={classes.formSubtitle} htmlFor="activityLevel">
             Activity Level
           </label>
           <select

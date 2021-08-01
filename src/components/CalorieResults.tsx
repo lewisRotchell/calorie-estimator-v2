@@ -1,18 +1,19 @@
 import React from "react";
 import classes from "./CalorieResults.module.scss";
 type Props = {
-  setIsSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
   values: any;
   height: any;
+  isSubmitted: boolean;
 };
 
-const CalorieResults: React.FC<Props> = ({
-  setIsSubmitted,
-  values,
-  height,
-}) => {
+const CalorieResults: React.FC<Props> = ({ values, height, isSubmitted }) => {
   return (
-    <div className={classes.calorieResults} style={{ height: height }}>
+    <div
+      className={`${classes.calorieResults} ${
+        isSubmitted ? classes.active : ""
+      }`}
+      style={{ height: height }}
+    >
       <p>
         Your daily estimated maintenence calories are:{" "}
         {values.maintenenceCalories} calories
@@ -21,7 +22,6 @@ const CalorieResults: React.FC<Props> = ({
         Your daily estimated calorie deficit is:{" "}
         {values.maintenenceCalories - 500} calories
       </p>
-      {/* <button onClick={() => setIsSubmitted(false)}>Back</button> */}
     </div>
   );
 };

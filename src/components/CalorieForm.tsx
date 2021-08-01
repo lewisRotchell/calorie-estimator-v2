@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import classes from "./CalorieForm.module.scss";
 
 type Props = {
+  setShowActivities: React.Dispatch<React.SetStateAction<boolean>>;
   setIsSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
   handleChangeNum: (e: React.ChangeEvent<HTMLInputElement>) => void;
   values: { [n: string]: number | string };
@@ -12,6 +13,7 @@ type Props = {
 };
 
 const CalorieForm: React.FC<Props> = ({
+  setShowActivities,
   handleChangeNum,
   handleChangeString,
   handleSubmit,
@@ -28,6 +30,11 @@ const CalorieForm: React.FC<Props> = ({
     setHeight(height);
   });
 
+  const handleShowActivities = (e: any) => {
+    e.preventDefault();
+    setShowActivities(true);
+  };
+
   return (
     <div ref={div} className={classes.calorieForm}>
       <form className=" " id="calorieForm" onSubmit={handleSubmit}>
@@ -36,6 +43,7 @@ const CalorieForm: React.FC<Props> = ({
             <p className="">Height</p>
             <label htmlFor="heightUnits">Units:</label>
             <select
+              // tabIndex={-1}
               className={classes.selectSmallest}
               onChange={handleChangeString}
               value={values.heightMetrics}
@@ -190,9 +198,10 @@ const CalorieForm: React.FC<Props> = ({
         </div>
         {/* activity level */}
         <div className={classes.formControl}>
-          <label className={classes.formSubtitle} htmlFor="activityLevel">
-            Activity Level
+          <label className={classes.activityLevel} htmlFor="activityLevel">
+            Activity Level <button onClick={handleShowActivities}>?</button>
           </label>
+
           <select
             onChange={handleChangeString}
             value={values.activityLevel}
@@ -208,25 +217,7 @@ const CalorieForm: React.FC<Props> = ({
           </select>
         </div>
       </form>
-      {/* <section className=" ">
-        <h3 className=" ">Activity Levels</h3>
-        <div className="  ">
-          <p className="">Sedentary: little or no exercise, desk job</p>
-          <p className="">
-            Lightly Active: Light exercise or sports 1-3 days/week
-          </p>
-          <p className="">
-            Moderately Active: Moderate exercise or sports 6-7 days/week
-          </p>
-          <p className="">
-            Very Active: Hard exercise every day, or exercising 2 times/day
-          </p>
-          <p className="">
-            Extra Active: Very hard exercise/sports and physical job or train
-            twice daily
-          </p>
-        </div>
-      </section> */}
+
       {/* <button className="" type="submit" form="calorieForm">
         Submit
       </button> */}

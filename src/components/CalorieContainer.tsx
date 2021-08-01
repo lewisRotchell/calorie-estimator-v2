@@ -4,9 +4,11 @@ import CalorieResults from "./CalorieResults";
 import useInput from "../hooks/useInput";
 import validate from "../validateForm";
 import classes from "./CalorieContainer.module.scss";
+import ActivityLevels from "./ActivityLevels";
 
 const CalorieContainer = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showActivities, setShowActivities] = useState(false);
   const [height, setHeight] = useState<number | null | undefined>(null);
   console.log(height);
 
@@ -22,9 +24,9 @@ const CalorieContainer = () => {
       <header>
         <h1 className="">Calorie Estimator</h1>
       </header>
-
-      {!isSubmitted && (
+      <div className={classes.calorieContainer}>
         <CalorieForm
+          setShowActivities={setShowActivities}
           setIsSubmitted={setIsSubmitted}
           handleChangeNum={handleChangeNum}
           handleChangeString={handleChangeString}
@@ -33,25 +35,28 @@ const CalorieContainer = () => {
           errors={errors}
           setHeight={setHeight}
         />
-      )}
 
-      {isSubmitted && (
         <CalorieResults
           values={values}
-          setIsSubmitted={setIsSubmitted}
           height={height}
+          isSubmitted={isSubmitted}
         />
-      )}
+        <ActivityLevels show={showActivities} height={height} />
 
-      {!isSubmitted && (
-        <button type="submit" form="calorieForm" onSubmit={handleSubmit}>
-          Submit
-        </button>
-      )}
+        {!isSubmitted && !showActivities && (
+          <button type="submit" form="calorieForm" onSubmit={handleSubmit}>
+            Submit
+          </button>
+        )}
 
-      {isSubmitted && (
-        <button onClick={() => setIsSubmitted(false)}>Back</button>
-      )}
+        {isSubmitted && !showActivities && (
+          <button onClick={() => setIsSubmitted(false)}>Back</button>
+        )}
+
+        {showActivities && (
+          <button onClick={() => setShowActivities(false)}>Back</button>
+        )}
+      </div>
     </>
   );
 };

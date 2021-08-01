@@ -1,7 +1,10 @@
 .calorieContainer {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.calorieSubContainer {
   position: relative;
   width: 100%;
   overflow: hidden;
-  max-width: 500px;
-  margin: 0 auto;
 }

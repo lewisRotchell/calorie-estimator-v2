@@ -20,11 +20,11 @@ const CalorieContainer = () => {
     useInput(validate, submitDetails);
 
   return (
-    <>
+    <div className={classes.calorieContainer}>
       <header>
         <h1 className="">Calorie Estimator</h1>
       </header>
-      <div className={classes.calorieContainer}>
+      <div className={classes.calorieSubContainer}>
         <CalorieForm
           setShowActivities={setShowActivities}
           setIsSubmitted={setIsSubmitted}
@@ -57,7 +57,7 @@ const CalorieContainer = () => {
           <button onClick={() => setShowActivities(false)}>Back</button>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

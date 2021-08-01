@@ -25,23 +25,27 @@ const CalorieContainer = () => {
         <h1 className="">Calorie Estimator</h1>
       </header>
       <div className={classes.calorieSubContainer}>
-        <CalorieForm
-          setShowActivities={setShowActivities}
-          setIsSubmitted={setIsSubmitted}
-          handleChangeNum={handleChangeNum}
-          handleChangeString={handleChangeString}
-          handleSubmit={handleSubmit}
-          values={values}
-          errors={errors}
-          setHeight={setHeight}
-        />
+        {!showActivities && (
+          <CalorieForm
+            setShowActivities={setShowActivities}
+            setIsSubmitted={setIsSubmitted}
+            handleChangeNum={handleChangeNum}
+            handleChangeString={handleChangeString}
+            handleSubmit={handleSubmit}
+            values={values}
+            errors={errors}
+            setHeight={setHeight}
+          />
+        )}
 
         <CalorieResults
           values={values}
           height={height}
           isSubmitted={isSubmitted}
         />
-        <ActivityLevels show={showActivities} height={height} />
+        {showActivities && (
+          <ActivityLevels show={showActivities} height={height} />
+        )}
 
         {!isSubmitted && !showActivities && (
           <button type="submit" form="calorieForm" onSubmit={handleSubmit}>

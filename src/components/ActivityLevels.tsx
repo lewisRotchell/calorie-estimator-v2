@@ -8,12 +8,9 @@ type Props = {
 
 const ActivityLevels: React.FC<Props> = ({ show, height }) => {
   return (
-    <section
-      className={`${classes.activityLevels} ${show ? classes.active : ""}`}
-      style={{ height: height }}
-    >
-      <h3 className=" ">Activity Levels</h3>
-      <div className="  ">
+    <section className={`${classes.activityLevels}`} style={{ height: height }}>
+      <h3 className="">Activity Levels</h3>
+      <div className="">
         <p className="">Sedentary: little or no exercise, desk job</p>
         <p className="">
           Lightly Active: Light exercise or sports 1-3 days/week

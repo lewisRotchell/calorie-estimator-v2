@@ -1,18 +1,14 @@
 .activityLevels {
-  display: none;
   animation: fadeInAnimation ease 700ms;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  position: absolute;
-  top: 0;
-  width: 100%;
 
-  background-color: #fff;
-}
-
-.active {
-  display: block;
-  animation: fadeInAnimation ease 700ms;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }

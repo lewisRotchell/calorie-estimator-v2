@@ -2,6 +2,8 @@
   animation: fadeInAnimation ease 700ms;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  border: 1px solid red;
+  box-sizing: border-box;
 
   @keyframes fadeInAnimation {
     0% {

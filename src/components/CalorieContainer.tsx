@@ -58,7 +58,12 @@ const CalorieContainer = () => {
         )}
 
         {showActivities && (
-          <button onClick={() => setShowActivities(false)}>Back</button>
+          <button
+            className={classes.showActivityBtn}
+            onClick={() => setShowActivities(false)}
+          >
+            Back
+          </button>
         )}
       </div>
     </div>

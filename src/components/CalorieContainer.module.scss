@@ -1,10 +1,19 @@
 .calorieContainer {
   max-width: 500px;
   margin: 0 auto;
+  border: 1px solid blue;
+  //Use these styles on tablet an up!
+  // border: 1px solid red;
+  // padding: 0.5rem;
 }
 
 .calorieSubContainer {
   position: relative;
   width: 100%;
   overflow: hidden;
+  border: 1px solid green;
+}
+
+.showActivityBtn {
+  margin-top: 1.3rem;
 }

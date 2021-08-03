@@ -24,6 +24,7 @@ const CalorieContainer = () => {
       <header>
         <h1 className="">Calorie Estimator</h1>
       </header>
+      <div className={classes.divider}></div>
       <div className={classes.calorieSubContainer}>
         {!showActivities && (
           <CalorieForm

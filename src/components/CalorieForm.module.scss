@@ -1,4 +1,5 @@
 @import "../assets/mixins";
+@import "../assets/variables";
 
 .calorieForm {
   animation: fadeInAnimation ease 700ms;
@@ -20,18 +21,29 @@
     margin-bottom: 1rem;
 
     p {
-      margin-right: 0.5rem;
       margin-bottom: 0.5rem;
+      background-color: $primary;
+      color: #fff;
+      font-weight: 500;
+      margin-right: 0;
+      width: 100%;
+      @include firstBreakPoint {
+        padding: 0 1rem;
+      }
     }
 
     input {
       margin-right: 0.25rem;
       font-size: 1rem;
+      @include mobile {
+        width: 6rem;
+      }
     }
 
     label {
       font-size: 1rem;
       margin-right: 0.75rem;
+      font-weight: 500;
     }
 
     select {
@@ -45,6 +57,9 @@
 
     &__bottom {
       margin-bottom: 0.8rem;
+      @include firstBreakPoint {
+        padding: 0 1rem;
+      }
     }
 
     .sexSelect {
@@ -60,16 +75,32 @@
       display: flex;
       flex-direction: column;
       margin-bottom: 0.5rem;
+      background-color: $primary;
+      color: #fff;
+      @include firstBreakPoint {
+        padding: 0 1rem;
+      }
     }
 
     .activityLevel {
       font-size: 1rem;
       display: inline;
       margin-bottom: 0.5rem;
+      background-color: $primary;
+      color: #fff;
+      @include firstBreakPoint {
+        padding: 0 1rem;
+      }
 
       button {
         margin-left: 0.5rem;
       }
+    }
+  }
+
+  .formInputs {
+    @include firstBreakPoint {
+      padding: 0 1rem;
     }
   }
 }

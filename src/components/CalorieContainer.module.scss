@@ -1,19 +1,37 @@
+@import "../assets/mixins";
+@import "../assets/variables";
+
 .calorieContainer {
-  max-width: 500px;
+  max-width: 375px;
   margin: 0 auto;
-  border: 1px solid blue;
+
+  // border: 1px solid blue;
   //Use these styles on tablet an up!
   // border: 1px solid red;
   // padding: 0.5rem;
+  h1 {
+    font-size: 1.3rem;
+
+    background-color: $primary;
+    width: 100%;
+
+    color: #fff;
+    padding: 0.5rem 1rem;
+  }
 }
 
 .calorieSubContainer {
   position: relative;
   width: 100%;
   overflow: hidden;
-  border: 1px solid green;
+
+  // border: 1px solid green;
 }
 
 .showActivityBtn {
   margin-top: 1.3rem;
+}
+
+.divider {
+  height: 1rem;
 }

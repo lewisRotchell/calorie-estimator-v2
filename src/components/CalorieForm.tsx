@@ -41,38 +41,42 @@ const CalorieForm: React.FC<Props> = ({
         <div className={classes.formControl}>
           <div className={classes.formControl__top}>
             <p className="">Height</p>
-            <label htmlFor="heightUnits">Units:</label>
-            <select
-              // tabIndex={-1}
-              className={classes.selectSmallest}
-              onChange={handleChangeString}
-              value={values.heightMetrics}
-              name="heightMetrics"
-              id="heightUnits"
-            >
-              <option value="feetAndInches">Feet/Inches</option>
-              <option value="cm">cm</option>
-            </select>
+            <div className={classes.formInputs}>
+              <label htmlFor="heightUnits">Units:</label>
+              <select
+                // tabIndex={-1}
+                className={classes.selectSmallest}
+                onChange={handleChangeString}
+                value={values.heightMetrics}
+                name="heightMetrics"
+                id="heightUnits"
+              >
+                <option value="feetAndInches">Feet/Inches</option>
+                <option value="cm">cm</option>
+              </select>
+            </div>
           </div>
 
           {values.heightMetrics === "cm" ? (
             <div className={classes.formControl__bottom}>
-              <label>
-                <input
-                  className=""
-                  onKeyDown={(evt) =>
-                    ["e", "E", "+", "-"].includes(evt.key) &&
-                    evt.preventDefault()
-                  }
-                  onChange={handleChangeNum}
-                  value={values.cm || ""}
-                  type="number"
-                  id="height"
-                  placeholder="cm"
-                  name="cm"
-                />
-                cm
-              </label>
+              <div className={classes.formInputs}>
+                <label>
+                  <input
+                    className=""
+                    onKeyDown={(evt) =>
+                      ["e", "E", "+", "-"].includes(evt.key) &&
+                      evt.preventDefault()
+                    }
+                    onChange={handleChangeNum}
+                    value={values.cm || ""}
+                    type="number"
+                    id="height"
+                    placeholder="cm"
+                    name="cm"
+                  />
+                  cm
+                </label>
+              </div>
             </div>
           ) : (
             <div className={classes.formControl__bottom}>
@@ -107,17 +111,19 @@ const CalorieForm: React.FC<Props> = ({
         <div className={classes.formControl}>
           <div className={classes.formControl__top}>
             <p>Weight</p>
-            <label htmlFor="weightUnits">Units:</label>
-            <select
-              className=""
-              onChange={handleChangeString}
-              value={values.weightMetrics}
-              name="weightMetrics"
-              id="weightUnits"
-            >
-              <option value="stoneAndPounds">Stone/lbs</option>
-              <option value="kg">kg</option>
-            </select>
+            <div className={classes.formInputs}>
+              <label htmlFor="weightUnits">Units:</label>
+              <select
+                className=""
+                onChange={handleChangeString}
+                value={values.weightMetrics}
+                name="weightMetrics"
+                id="weightUnits"
+              >
+                <option value="stoneAndPounds">Stone/lbs</option>
+                <option value="kg">kg</option>
+              </select>
+            </div>
           </div>
 
           {values.weightMetrics === "kg" ? (
@@ -170,51 +176,56 @@ const CalorieForm: React.FC<Props> = ({
           <label className={classes.formSubtitle} htmlFor="age">
             Age
           </label>
-          <input
-            onChange={handleChangeNum}
-            value={values.age || ""}
-            className=""
-            type="number"
-            id="age"
-            placeholder="Years"
-            name="age"
-          />
+          <div className={classes.formInputs}>
+            <input
+              onChange={handleChangeNum}
+              value={values.age || ""}
+              className=""
+              type="number"
+              id="age"
+              placeholder="Years"
+              name="age"
+            />
+          </div>
         </div>
         {/* sex */}
         <div className={classes.formControl}>
           <label className={classes.formSubtitle} htmlFor="sex">
             Sex
           </label>
-          <select
-            onChange={handleChangeString}
-            value={values.sex}
-            name="sex"
-            className={classes.sexSelect}
-            id="sex"
-          >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
+          <div className={classes.formInputs}>
+            <select
+              onChange={handleChangeString}
+              value={values.sex}
+              name="sex"
+              className={classes.sexSelect}
+              id="sex"
+            >
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
         </div>
         {/* activity level */}
         <div className={classes.formControl}>
           <label className={classes.activityLevel} htmlFor="activityLevel">
             Activity Level <button onClick={handleShowActivities}>?</button>
           </label>
-
-          <select
-            onChange={handleChangeString}
-            value={values.activityLevel}
-            name="activityLevel"
-            className={classes.activitySelect}
-            id="activityLevel"
-          >
-            <option value={1.2}>Sedentary</option>
-            <option value={1.375}>Lightly Active</option>
-            <option value={1.55}>Moderately Active</option>
-            <option value={1.725}>Very Active</option>
-            <option value={1.9}>Extra Active</option>
-          </select>
+          <div className={classes.formInputs}>
+            <select
+              onChange={handleChangeString}
+              value={values.activityLevel}
+              name="activityLevel"
+              className={classes.activitySelect}
+              id="activityLevel"
+            >
+              <option value={1.2}>Sedentary</option>
+              <option value={1.375}>Lightly Active</option>
+              <option value={1.55}>Moderately Active</option>
+              <option value={1.725}>Very Active</option>
+              <option value={1.9}>Extra Active</option>
+            </select>
+          </div>
         </div>
       </form>
 

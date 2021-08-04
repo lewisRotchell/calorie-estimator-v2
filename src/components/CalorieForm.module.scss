@@ -62,6 +62,10 @@
       appearance: none;
       padding-right: 1.5rem;
       background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px $primary;
+      }
     }
 
     option {

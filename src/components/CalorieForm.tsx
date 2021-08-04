@@ -43,23 +43,30 @@ const CalorieForm: React.FC<Props> = ({
             <p className="">Height</p>
             <div className={classes.formInputs}>
               <label htmlFor="heightUnits">Units:</label>
-              <select
-                // tabIndex={-1}
-                className={classes.selectSmallest}
-                onChange={handleChangeString}
-                value={values.heightMetrics}
-                name="heightMetrics"
-                id="heightUnits"
-              >
-                <option value="feetAndInches">Feet/Inches</option>
-                <option value="cm">cm</option>
-              </select>
+              <div className={classes.select}>
+                <select
+                  // tabIndex={-1}
+                  className={classes.selectSmallest}
+                  onChange={handleChangeString}
+                  value={values.heightMetrics}
+                  name="heightMetrics"
+                  id="heightUnits"
+                >
+                  <option className={classes.option} value="feetAndInches">
+                    Feet/Inches
+                  </option>
+                  <option className={classes.option} value="cm">
+                    cm
+                  </option>
+                </select>
+              </div>
+              {/* <span className={classes.selectArrow}></span> */}
             </div>
           </div>
 
           {values.heightMetrics === "cm" ? (
             <div className={classes.formControl__bottom}>
-              <div className={classes.formInputs}>
+              <div>
                 <label>
                   <input
                     className=""
@@ -113,16 +120,18 @@ const CalorieForm: React.FC<Props> = ({
             <p>Weight</p>
             <div className={classes.formInputs}>
               <label htmlFor="weightUnits">Units:</label>
-              <select
-                className=""
-                onChange={handleChangeString}
-                value={values.weightMetrics}
-                name="weightMetrics"
-                id="weightUnits"
-              >
-                <option value="stoneAndPounds">Stone/lbs</option>
-                <option value="kg">kg</option>
-              </select>
+              <div className={classes.select}>
+                <select
+                  className=""
+                  onChange={handleChangeString}
+                  value={values.weightMetrics}
+                  name="weightMetrics"
+                  id="weightUnits"
+                >
+                  <option value="stoneAndPounds">Stone/lbs</option>
+                  <option value="kg">kg</option>
+                </select>
+              </div>
             </div>
           </div>
 
@@ -211,20 +220,23 @@ const CalorieForm: React.FC<Props> = ({
           <label className={classes.activityLevel} htmlFor="activityLevel">
             Activity Level <button onClick={handleShowActivities}>?</button>
           </label>
+
           <div className={classes.formInputs}>
-            <select
-              onChange={handleChangeString}
-              value={values.activityLevel}
-              name="activityLevel"
-              className={classes.activitySelect}
-              id="activityLevel"
-            >
-              <option value={1.2}>Sedentary</option>
-              <option value={1.375}>Lightly Active</option>
-              <option value={1.55}>Moderately Active</option>
-              <option value={1.725}>Very Active</option>
-              <option value={1.9}>Extra Active</option>
-            </select>
+            <div className={classes.select}>
+              <select
+                onChange={handleChangeString}
+                value={values.activityLevel}
+                name="activityLevel"
+                className={classes.activitySelect}
+                id="activityLevel"
+              >
+                <option value={1.2}>Sedentary</option>
+                <option value={1.375}>Lightly Active</option>
+                <option value={1.55}>Moderately Active</option>
+                <option value={1.725}>Very Active</option>
+                <option value={1.9}>Extra Active</option>
+              </select>
+            </div>
           </div>
         </div>
       </form>

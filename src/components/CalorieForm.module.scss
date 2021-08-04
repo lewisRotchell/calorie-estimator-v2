@@ -33,8 +33,14 @@
     }
 
     input {
+      border: none;
       margin-right: 0.25rem;
       font-size: 1rem;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+      &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 2px $primary;
+      }
       @include mobile {
         width: 6rem;
       }
@@ -49,6 +55,51 @@
     select {
       font-size: 1rem;
       display: inline;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+      border: 0;
+      position: relative;
+      cursor: pointer;
+      appearance: none;
+      padding-right: 1.5rem;
+      background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+    }
+
+    option {
+      color: #fff;
+      background-color: $primary;
+      cursor: pointer;
+      border: 1px solid $primary;
+
+      &::hover {
+        cursor: pointer;
+      }
+    }
+
+    .option {
+      color: #fff;
+      background-color: $primary;
+    }
+
+    .select {
+      font-size: 1rem;
+      display: inline;
+      box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+      border: 0;
+      position: relative;
+
+      &::after {
+        position: absolute;
+        top: 55%;
+        transform: translateY(-50%);
+        right: 3%;
+        content: "";
+        display: block;
+        background-color: $primary;
+        height: 0.7rem;
+        width: 0.7rem;
+        pointer-events: none;
+        clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+      }
     }
 
     &__top {

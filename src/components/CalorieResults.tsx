@@ -12,7 +12,7 @@ const CalorieResults: React.FC<Props> = ({ values, height, isSubmitted }) => {
       className={`${classes.calorieResults} ${
         isSubmitted ? classes.active : ""
       }`}
-      style={{ height: height }}
+      style={{ height: height + 12 }}
     >
       <p>
         Your daily estimated maintenence calories are:{" "}

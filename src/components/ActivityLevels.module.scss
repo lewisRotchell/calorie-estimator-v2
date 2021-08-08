@@ -1,8 +1,11 @@
+@import "../assets/mixins";
+@import "../assets/variables";
+
 .activityLevels {
   animation: fadeInAnimation ease 700ms;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  border: 1px solid red;
+  background-color: #fff;
   box-sizing: border-box;
 
   @keyframes fadeInAnimation {
@@ -11,6 +14,37 @@
     }
     100% {
       opacity: 1;
+    }
+  }
+
+  h2 {
+    background-color: $primary;
+    color: #fff;
+    font-weight: 500;
+    width: 100%;
+    @include firstBreakPoint {
+      padding: 0 1rem;
+    }
+  }
+
+  .activityInfo {
+    @include firstBreakPoint {
+      padding: 1rem 1rem;
+    }
+
+    & > * {
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-weight: 500;
+    }
+
+    .activityLabel {
+      color: $primary;
+      font-size: 1rem;
+      font-weight: 600;
+      display: block;
     }
   }
 }

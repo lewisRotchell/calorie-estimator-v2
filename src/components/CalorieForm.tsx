@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import classes from "./CalorieForm.module.scss";
 
 type Props = {
@@ -6,10 +6,11 @@ type Props = {
   setIsSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
   handleChangeNum: (e: React.ChangeEvent<HTMLInputElement>) => void;
   values: { [n: string]: number | string };
-  errors: {};
+  errors: any;
   handleChangeString: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleSubmit: (e: React.ChangeEvent<HTMLFormElement>) => void;
   setHeight: any;
+  isSubmitted: boolean;
 };
 
 const CalorieForm: React.FC<Props> = ({
@@ -20,6 +21,7 @@ const CalorieForm: React.FC<Props> = ({
   values,
   errors,
   setHeight,
+  isSubmitted,
 }) => {
   console.log(errors);
 
@@ -35,6 +37,8 @@ const CalorieForm: React.FC<Props> = ({
     setShowActivities(true);
   };
 
+  let tabIndex = isSubmitted ? -1 : 1;
+
   return (
     <div ref={div} className={classes.calorieForm}>
       <form className=" " id="calorieForm" onSubmit={handleSubmit}>
@@ -45,12 +49,12 @@ const CalorieForm: React.FC<Props> = ({
               <label htmlFor="heightUnits">Units:</label>
               <div className={classes.select}>
                 <select
-                  // tabIndex={-1}
                   className={classes.selectSmallest}
                   onChange={handleChangeString}
                   value={values.heightMetrics}
                   name="heightMetrics"
                   id="heightUnits"
+                  tabIndex={tabIndex}
                 >
                   <option className={classes.option} value="feetAndInches">
                     Feet/Inches
@@ -60,7 +64,6 @@ const CalorieForm: React.FC<Props> = ({
                   </option>
                 </select>
               </div>
-              {/* <span className={classes.selectArrow}></span> */}
             </div>
           </div>
 
@@ -69,7 +72,7 @@ const CalorieForm: React.FC<Props> = ({
               <div>
                 <label>
                   <input
-                    className=""
+                    className={errors.cm && classes.error}
                     onKeyDown={(evt) =>
                       ["e", "E", "+", "-"].includes(evt.key) &&
                       evt.preventDefault()
@@ -80,6 +83,7 @@ const CalorieForm: React.FC<Props> = ({
                     id="height"
                     placeholder="cm"
                     name="cm"
+                    tabIndex={tabIndex}
                   />
                   cm
                 </label>
@@ -89,12 +93,18 @@ const CalorieForm: React.FC<Props> = ({
             <div className={classes.formControl__bottom}>
               <label>
                 <input
+                  className={errors.foot && classes.error}
                   onChange={handleChangeNum}
                   value={values.foot || ""}
                   type="number"
                   id="foot"
                   placeholder="feet"
                   name="foot"
+                  onKeyDown={(evt) =>
+                    ["e", "E", "+", "-"].includes(evt.key) &&
+                    evt.preventDefault()
+                  }
+                  tabIndex={tabIndex}
                 />
                 foot
               </label>
@@ -103,11 +113,15 @@ const CalorieForm: React.FC<Props> = ({
                 <input
                   onChange={handleChangeNum}
                   value={values.inch || ""}
-                  className=""
                   type="number"
                   id="inches"
                   placeholder="inches"
                   name="inch"
+                  onKeyDown={(evt) =>
+                    ["e", "E", "+", "-"].includes(evt.key) &&
+                    evt.preventDefault()
+                  }
+                  tabIndex={tabIndex}
                 />
                 inches
               </label>
@@ -127,6 +141,7 @@ const CalorieForm: React.FC<Props> = ({
                   value={values.weightMetrics}
                   name="weightMetrics"
                   id="weightUnits"
+                  tabIndex={tabIndex}
                 >
                   <option value="stoneAndPounds">Stone/lbs</option>
                   <option value="kg">kg</option>
@@ -141,11 +156,16 @@ const CalorieForm: React.FC<Props> = ({
                 <input
                   onChange={handleChangeNum}
                   value={values.kg || ""}
-                  className=""
+                  className={errors.kg && classes.error}
                   type="number"
                   id="weight"
                   placeholder="kg"
                   name="kg"
+                  onKeyDown={(evt) =>
+                    ["e", "E", "+", "-"].includes(evt.key) &&
+                    evt.preventDefault()
+                  }
+                  tabIndex={tabIndex}
                 />
                 kg
               </label>
@@ -156,11 +176,16 @@ const CalorieForm: React.FC<Props> = ({
                 <input
                   onChange={handleChangeNum}
                   value={values.stone || ""}
-                  className=""
+                  className={errors.stone && classes.error}
                   placeholder="stone"
                   type="number"
                   id="stone"
                   name="stone"
+                  onKeyDown={(evt) =>
+                    ["e", "E", "+", "-"].includes(evt.key) &&
+                    evt.preventDefault()
+                  }
+                  tabIndex={tabIndex}
                 />
                 stone
               </label>
@@ -174,6 +199,11 @@ const CalorieForm: React.FC<Props> = ({
                   id="lbs"
                   placeholder="lbs"
                   name="lbs"
+                  onKeyDown={(evt) =>
+                    ["e", "E", "+", "-"].includes(evt.key) &&
+                    evt.preventDefault()
+                  }
+                  tabIndex={tabIndex}
                 />
                 lbs
               </label>
@@ -189,11 +219,15 @@ const CalorieForm: React.FC<Props> = ({
             <input
               onChange={handleChangeNum}
               value={values.age || ""}
-              className=""
+              className={errors.age && classes.error}
               type="number"
               id="age"
               placeholder="Years"
               name="age"
+              onKeyDown={(evt) =>
+                ["e", "E", "+", "-"].includes(evt.key) && evt.preventDefault()
+              }
+              tabIndex={tabIndex}
             />
           </div>
         </div>
@@ -209,6 +243,7 @@ const CalorieForm: React.FC<Props> = ({
               name="sex"
               className={classes.sexSelect}
               id="sex"
+              tabIndex={tabIndex}
             >
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -222,6 +257,7 @@ const CalorieForm: React.FC<Props> = ({
             <button
               className={classes.activityButton}
               onClick={handleShowActivities}
+              tabIndex={tabIndex}
             >
               ?
             </button>
@@ -235,6 +271,7 @@ const CalorieForm: React.FC<Props> = ({
                 name="activityLevel"
                 className={classes.activitySelect}
                 id="activityLevel"
+                tabIndex={tabIndex}
               >
                 <option value={1.2}>Sedentary</option>
                 <option value={1.375}>Lightly Active</option>

@@ -26,6 +26,18 @@ input {
   width: 4.5rem;
 }
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 select {
   color: #333;
   padding: 0.2rem 0.5rem;

@@ -34,10 +34,16 @@
     font-size: 1rem;
     cursor: pointer;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
-    &:hover {
-      background-color: #fff;
-      color: $primary;
+    @media (hover: hover) {
+      &:hover {
+        background-color: #fff;
+        color: $primary;
+      }
     }
+    // &:hover {
+    //   background-color: #fff;
+    //   color: $primary;
+    // }
     &:active {
       transform: translateY(4px);
     }

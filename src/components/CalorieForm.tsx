@@ -6,10 +6,16 @@ type Props = {
   setIsSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
   handleChangeNum: (e: React.ChangeEvent<HTMLInputElement>) => void;
   values: { [n: string]: number | string };
-  errors: any;
+  errors: {
+    cm?: string;
+    foot?: string;
+    stone?: string;
+    kg?: string;
+    age?: string;
+  };
   handleChangeString: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleSubmit: (e: React.ChangeEvent<HTMLFormElement>) => void;
-  setHeight: any;
+  setHeight: React.Dispatch<React.SetStateAction<null | number | undefined>>;
   isSubmitted: boolean;
 };
 
@@ -23,8 +29,6 @@ const CalorieForm: React.FC<Props> = ({
   setHeight,
   isSubmitted,
 }) => {
-  console.log(errors);
-
   const div = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

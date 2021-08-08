@@ -9,6 +9,41 @@
 
   transition: 350ms;
   background-color: #fff;
+
+  h2 {
+    background-color: $primary;
+    color: #fff;
+    font-weight: 500;
+    width: 100%;
+    @include firstBreakPoint {
+      padding: 0 1rem;
+    }
+  }
+
+  .info {
+    @include firstBreakPoint {
+      padding: 1rem 1rem;
+    }
+
+    p {
+      font-weight: 500;
+    }
+
+    .resultNum {
+      text-align: center;
+
+      span {
+        padding: 1rem 2rem;
+        color: $primary;
+        font-weight: 700;
+        font-size: 1.6rem;
+      }
+    }
+
+    & > * {
+      margin-bottom: 1rem;
+    }
+  }
 }
 .active {
   left: 0;

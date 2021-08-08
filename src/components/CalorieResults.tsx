@@ -14,14 +14,17 @@ const CalorieResults: React.FC<Props> = ({ values, height, isSubmitted }) => {
       }`}
       style={{ height: height + 12 }}
     >
-      <p>
-        Your daily estimated maintenence calories are:{" "}
-        {values.maintenenceCalories} calories
-      </p>
-      <p>
-        Your daily estimated calorie deficit is:{" "}
-        {values.maintenenceCalories - 500} calories
-      </p>
+      <h2>Results</h2>
+      <div className={classes.info}>
+        <p>Your daily estimated maintenence calories are:</p>
+        <p className={classes.resultNum}>
+          <span> {values.maintenenceCalories} calories</span>
+        </p>
+        <p>Your daily estimated calorie deficit is:</p>
+        <p className={classes.resultNum}>
+          <span> {values.maintenenceCalories - 500} calories</span>
+        </p>
+      </div>
     </div>
   );
 };

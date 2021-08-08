@@ -36,8 +36,11 @@
       border: none;
       margin-right: 0.5rem;
       font-size: 1rem;
+      -webkit-appearance: none;
       box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2), 0 5px 12px rgba(0, 0, 0, 0.2);
-      &:focus-visible {
+      &:focus-visible,
+      &:focus {
+        -webkit-appearance: none;
         outline: none;
         box-shadow: 0 0 0 2px $primary;
       }
@@ -62,7 +65,9 @@
       appearance: none;
       padding-right: 1.5rem;
       background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
-      &:focus-visible {
+      &:focus-visible,
+      &:focus {
+        -webkit-appearance: none;
         outline: none;
         box-shadow: 0 0 0 2px $primary;
       }
@@ -176,7 +181,8 @@
       box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.4);
     }
 
-    &:focus-visible {
+    &:focus-visible,
+    &:focus {
       outline: none;
       box-shadow: 0 0 0 2px #fff, 0 0 0 4px $primary;
     }

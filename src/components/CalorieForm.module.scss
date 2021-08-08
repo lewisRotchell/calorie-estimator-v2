@@ -162,11 +162,10 @@
   }
 
   .activityButton {
-    width: 20px;
-    height: 20px;
+    padding: 0.125rem 0.4rem 0.05rem;
     border-radius: 50%;
     background-color: #fff;
-    border: 2px solid #fff;
+    border: none;
     font-size: 1rem;
     color: $primary;
     font-weight: 700;

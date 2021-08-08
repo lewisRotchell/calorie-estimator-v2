@@ -18,14 +18,34 @@
     color: #fff;
     padding: 0.5rem 1rem;
   }
+
+  .button {
+    padding: 0.5rem 0;
+    width: 120px;
+    border-radius: 10px;
+    border: none;
+    margin: 1rem auto;
+    display: block;
+    background-color: $primary;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    &:hover {
+      background-color: #fff;
+      color: $primary;
+    }
+    &:active {
+      transform: translateY(4px);
+    }
+  }
 }
 
 .calorieSubContainer {
   position: relative;
   width: 100%;
   overflow: hidden;
-
-  // border: 1px solid green;
 }
 
 .showActivityBtn {

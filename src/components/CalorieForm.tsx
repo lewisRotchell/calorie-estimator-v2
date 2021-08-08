@@ -218,7 +218,13 @@ const CalorieForm: React.FC<Props> = ({
         {/* activity level */}
         <div className={classes.formControl}>
           <label className={classes.activityLevel} htmlFor="activityLevel">
-            Activity Level <button onClick={handleShowActivities}>?</button>
+            Activity Level{" "}
+            <button
+              className={classes.activityButton}
+              onClick={handleShowActivities}
+            >
+              ?
+            </button>
           </label>
 
           <div className={classes.formInputs}>
@@ -240,10 +246,6 @@ const CalorieForm: React.FC<Props> = ({
           </div>
         </div>
       </form>
-
-      {/* <button className="" type="submit" form="calorieForm">
-        Submit
-      </button> */}
     </div>
   );
 };

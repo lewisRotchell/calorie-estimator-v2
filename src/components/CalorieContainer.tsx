@@ -49,18 +49,28 @@ const CalorieContainer = () => {
         )}
 
         {!isSubmitted && !showActivities && (
-          <button type="submit" form="calorieForm" onSubmit={handleSubmit}>
+          <button
+            className={classes.button}
+            type="submit"
+            form="calorieForm"
+            onSubmit={handleSubmit}
+          >
             Submit
           </button>
         )}
 
         {isSubmitted && !showActivities && (
-          <button onClick={() => setIsSubmitted(false)}>Back</button>
+          <button
+            className={classes.button}
+            onClick={() => setIsSubmitted(false)}
+          >
+            Back
+          </button>
         )}
 
         {showActivities && (
           <button
-            className={classes.showActivityBtn}
+            className={`${classes.showActivityBtn} ${classes.button}`}
             onClick={() => setShowActivities(false)}
           >
             Back

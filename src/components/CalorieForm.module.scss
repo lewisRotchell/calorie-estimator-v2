@@ -160,4 +160,20 @@
       padding: 0 1rem;
     }
   }
+
+  .activityButton {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 2px solid #fff;
+    font-size: 1rem;
+    color: $primary;
+    font-weight: 700;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 2px 2px 7px rgba(255, 255, 255, 0.4);
+    }
+  }
 }
